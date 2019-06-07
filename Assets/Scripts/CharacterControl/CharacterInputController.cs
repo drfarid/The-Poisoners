@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterInputController : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class CharacterInputController : MonoBehaviour {
     public float turnInputFilter = 5f;
 
     private float forwardSpeedLimit = 1f;
+    private float elementCounter;
+
+    public Slider healthBar;
 
 
     public float Forward
@@ -33,6 +37,11 @@ public class CharacterInputController : MonoBehaviour {
     {
         get;
         private set;
+    }
+
+    void Start() {
+    	healthBar.value = 1;
+    	elementCounter = 0;
     }
 
 
@@ -98,5 +107,15 @@ public class CharacterInputController : MonoBehaviour {
         //Capture "fire" button for action event
         Action = Input.GetButtonDown("Fire1");
 
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.CompareTag("poisonElement")) {
+			other.gameObject.SetActive(false);
+			elementCounter++; 
+		}	
+		if (elementCounter == 5) {
+			healthBar.value = 0.5f;
+		}
 	}
 }
