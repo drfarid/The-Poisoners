@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-	public float smoothTime = 1f;		// a public variable to adjust smoothing of camera motion
-    public float maxSpeed = 50f;        //max speed camera can move
+	public float smoothTime = 0.25f;		// a public variable to adjust smoothing of camera motion
+    public float maxSpeed = 150f;        //max speed camera can move
 	public Transform desiredPose;			// the desired pose for the camera, specified by a transform in the game
 	
     protected Vector3 currentPositionCorrectionVelocity;
