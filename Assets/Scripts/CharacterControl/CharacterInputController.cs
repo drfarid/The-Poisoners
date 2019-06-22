@@ -110,7 +110,7 @@ public class CharacterInputController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("poisonElement")) {
+		if (other.gameObject.CompareTag("item")) {
 			other.gameObject.SetActive(false);
 			elementCounter++; 
 		}	
