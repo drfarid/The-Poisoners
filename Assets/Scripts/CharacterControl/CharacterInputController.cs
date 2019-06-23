@@ -18,8 +18,7 @@ public class CharacterInputController : MonoBehaviour {
     private float forwardSpeedLimit = 1f;
     private float elementCounter;
 
-    public Slider healthBar;
-
+    public Inventory inventory;
 
     public float Forward
     {
@@ -40,7 +39,7 @@ public class CharacterInputController : MonoBehaviour {
     }
 
     void Start() {
-    	healthBar.value = 1;
+    	
     	elementCounter = 0;
     }
 
@@ -109,13 +108,10 @@ public class CharacterInputController : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("item")) {
-			other.gameObject.SetActive(false);
-			elementCounter++; 
-		}	
-		if (elementCounter == 5) {
-			healthBar.value = 0.5f;
-		}
-	}
+	private void OnTriggerEnter(Collider hit) {
+        IInventoryItem item = hit.GetComponent<IInventoryItem>();
+        if (item != null) {
+            inventory.AddItem(item);
+        }
+    }
 }
