@@ -8,6 +8,7 @@ TagManager:
   - grabbable
   - ground
   - poisonElement
+  - bucket_cam
   layers:
   - Default
   - TransparentFX

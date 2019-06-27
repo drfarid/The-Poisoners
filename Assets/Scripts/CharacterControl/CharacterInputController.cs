@@ -11,14 +11,18 @@ public class CharacterInputController : MonoBehaviour {
     private float filteredTurnInput = 0f;
 
     public bool InputMapToCircular = true;
-
     public float forwardInputFilter = 5f;
     public float turnInputFilter = 5f;
 
+    public int delayCounter = 0;
+    public Camera bucketCam;
+    public Camera mainCam;
     private float forwardSpeedLimit = 1f;
     private float elementCounter;
 
     public Inventory inventory;
+    public bool isMixing = false;
+    public GameObject bucket;
 
     public float Forward
     {
@@ -89,7 +93,42 @@ public class CharacterInputController : MonoBehaviour {
             forwardSpeedLimit = 0.9f;
         else if (Input.GetKeyUp(KeyCode.Alpha0))
             forwardSpeedLimit = 1.0f;
-        //END ANALOG ON KEYBOARD DEMO CODE  
+
+		
+		
+
+
+		delayCounter++;
+        if (Input.GetKey(KeyCode.M)) {
+
+        	
+
+        	if (delayCounter > 10) {
+        		delayCounter = 0;
+	        	if (bucket.activeSelf == true) {
+	        		bucketCam.enabled = false;
+	        		mainCam.enabled = true;
+	        		bucket.SetActive(false);	
+	        		
+
+
+	        	} else {
+	        		if (bucket == null)
+	        			bucket = Instantiate(bucket, this.transform.position, Quaternion.identity);
+	        		Vector3 bucketPosition = this.transform.position;
+
+	        		bucketPosition = new Vector3(bucketPosition.x, bucketPosition.y + 1f, bucketPosition.z + 1f);
+	        		bucket.transform.position = bucketPosition;
+
+	        		bucket.SetActive(true);
+	        		bucketCam.enabled = true;
+	        		mainCam.enabled = false;
+	        		
+	        	}
+        	}
+	    }
+	    
+
 
 
         //do some filtering of our input as well as clamp to a speed limit
@@ -107,6 +146,7 @@ public class CharacterInputController : MonoBehaviour {
         Action = Input.GetButtonDown("Fire1");
 
 	}
+
 
 	private void OnTriggerEnter(Collider hit) {
         IInventoryItem item = hit.GetComponent<IInventoryItem>();
