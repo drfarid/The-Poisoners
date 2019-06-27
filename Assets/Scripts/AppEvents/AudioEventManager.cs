@@ -21,8 +21,11 @@ public class AudioEventManager : MonoBehaviour
     public AudioClip minionSpawnAudio;
     public AudioClip[] minionFootstepAudio;
     public AudioClip punchAudio;
+    public AudioClip sphereAudio;
 
     private UnityAction<Vector3,float> boxCollisionEventListener;
+
+    private UnityAction<Vector3, float> sphereCollisionEventListener;
 
     private UnityAction<Vector3, float> playerLandsEventListener;
 
@@ -49,7 +52,9 @@ public class AudioEventManager : MonoBehaviour
     void Awake()
     {
 
-        boxCollisionEventListener = new UnityAction<Vector3,float>(boxCollisionEventHandler);
+        boxCollisionEventListener = new UnityAction<Vector3, float>(boxCollisionEventHandler);
+
+        sphereCollisionEventListener = new UnityAction<Vector3, float>(sphereCollisionEventHandler);
 
         playerLandsEventListener = new UnityAction<Vector3, float>(playerLandsEventHandler);
 
@@ -87,7 +92,8 @@ public class AudioEventManager : MonoBehaviour
     void OnEnable()
     {
 
-        EventManager.StartListening<BoxCollisionEvent, Vector3,float>(boxCollisionEventListener);
+        EventManager.StartListening<BoxCollisionEvent, Vector3, float>(boxCollisionEventListener);
+        EventManager.StartListening<SphereCollisionEvent, Vector3, float>(sphereCollisionEventListener);
         EventManager.StartListening<PlayerLandsEvent, Vector3, float>(playerLandsEventListener);
         EventManager.StartListening<MinionLandsEvent, Vector3, float>(minionLandsEventListener);
         EventManager.StartListening<MinionJabberEvent, Vector3>(minionJabberEventListener);
@@ -105,7 +111,8 @@ public class AudioEventManager : MonoBehaviour
     void OnDisable()
     {
 
-        EventManager.StopListening<BoxCollisionEvent, Vector3,float>(boxCollisionEventListener);
+        EventManager.StopListening<BoxCollisionEvent, Vector3, float>(boxCollisionEventListener);
+        EventManager.StopListening<SphereCollisionEvent, Vector3, float>(sphereCollisionEventListener);
         EventManager.StopListening<PlayerLandsEvent, Vector3, float>(playerLandsEventListener);
         EventManager.StopListening<MinionLandsEvent, Vector3, float>(minionLandsEventListener);
         EventManager.StopListening<MinionJabberEvent, Vector3>(minionJabberEventListener);
@@ -136,6 +143,24 @@ public class AudioEventManager : MonoBehaviour
         snd.audioSrc.pitch = Random.Range(1f-halfSpeedRange, 1f+halfSpeedRange);
 
         snd.audioSrc.minDistance = Mathf.Lerp(1f, 8f, impactForce /200f);
+        snd.audioSrc.maxDistance = 100f;
+
+        snd.audioSrc.Play();
+    }
+
+    void sphereCollisionEventHandler(Vector3 worldPos, float impactForce)
+    {
+        //AudioSource.PlayClipAtPoint(this.boxAudio, worldPos);
+
+        const float halfSpeedRange = 0.2f;
+
+        EventSound3D snd = Instantiate(eventSound3DPrefab, worldPos, Quaternion.identity, null);
+
+        snd.audioSrc.clip = this.sphereAudio;
+
+        snd.audioSrc.pitch = Random.Range(1f - halfSpeedRange, 1f + halfSpeedRange);
+
+        snd.audioSrc.minDistance = Mathf.Lerp(1f, 8f, impactForce / 200f);
         snd.audioSrc.maxDistance = 100f;
 
         snd.audioSrc.Play();

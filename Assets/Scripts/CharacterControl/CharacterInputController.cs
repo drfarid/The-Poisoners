@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CharacterInputController : MonoBehaviour {
 
-    public string Name = "George P Burdell2";
+    public string Name = "George P Burdell";
 
     private float filteredForwardInput = 0f;
     private float filteredTurnInput = 0f;
@@ -16,9 +15,7 @@ public class CharacterInputController : MonoBehaviour {
     public float turnInputFilter = 5f;
 
     private float forwardSpeedLimit = 1f;
-    private float elementCounter;
 
-    public Inventory inventory;
 
     public float Forward
     {
@@ -36,11 +33,6 @@ public class CharacterInputController : MonoBehaviour {
     {
         get;
         private set;
-    }
-
-    void Start() {
-    	
-    	elementCounter = 0;
     }
 
 
@@ -107,11 +99,4 @@ public class CharacterInputController : MonoBehaviour {
         Action = Input.GetButtonDown("Fire1");
 
 	}
-
-	private void OnTriggerEnter(Collider hit) {
-        IInventoryItem item = hit.GetComponent<IInventoryItem>();
-        if (item != null) {
-            inventory.AddItem(item);
-        }
-    }
 }

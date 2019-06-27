@@ -22,14 +22,13 @@ public class RootMotionControlScript : MonoBehaviour
     public float jumpableGroundNormalMaxAngle = 45f;
     public bool closeToJumpableGround;
 
-    private int groundContactCount = 0;
-
-    // Animation speed adjustments
     public float animationSpeed = 1f;
     public float rootMovementSpeed = 1f;
     public float rootTurnSpeed = 1f;
 
     public GameObject buttonObject;
+
+    private int groundContactCount = 0;
 
     public bool IsGrounded
     {
@@ -61,19 +60,14 @@ public class RootMotionControlScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		//example of how to get access to certain limbs
+        //example of how to get access to certain limbs
         leftFoot = this.transform.Find("mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot");
         rightFoot = this.transform.Find("mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot");
 
         if (leftFoot == null || rightFoot == null)
             Debug.Log("One of the feet could not be found");
-            
+
     }
-        
-
-
-
-
 
     void Update()
     {
@@ -103,8 +97,7 @@ public class RootMotionControlScript : MonoBehaviour
         anim.SetFloat("vely", inputForward);
         anim.SetBool("isFalling", !isGrounded);
         anim.SetBool("doButtonPress", inputAction);
-        anim.speed = animationSpeed;
-
+        anim.speed = this.animationSpeed;
 
         if(inputAction)
             Debug.Log("Action pressed");
@@ -160,31 +153,40 @@ public class RootMotionControlScript : MonoBehaviour
         //use rotational root motion as is
         newRootRotation = anim.rootRotation;
 
-        //Here, you could scale the difference in position and rotation to make the character go faster or slower
-        this.transform.position = Vector3.LerpUnclamped(this.transform.position, newRootPosition, rootMovementSpeed);
-        this.transform.rotation = Quaternion.LerpUnclamped(this.transform.rotation, newRootRotation, rootTurnSpeed);
+        //TODO Here, you could scale the difference in position and rotation to make the character go faster or slower
+
+        Vector3 scaledRootPosition = Vector3.LerpUnclamped(this.transform.position, newRootPosition, this.rootMovementSpeed);
+        Quaternion scaledRootRotation = Quaternion.LerpUnclamped(this.transform.rotation, newRootRotation, this.rootMovementSpeed);
+        
         //this.transform.position = newRootPosition;
         //this.transform.rotation = newRootRotation;
+        this.transform.position = scaledRootPosition;
+        this.transform.rotation = scaledRootRotation;
 
     }
 
-    void OnAnimatorIK()
+    private void OnAnimatorIK()
     {
-        if(anim) {
+        if (anim)
+        {
             AnimatorStateInfo astate = anim.GetCurrentAnimatorStateInfo(0);
-            if(astate.IsName("ButtonPress")) {
-                float buttonWeight = anim.GetFloat("buttonClose");;
+            if (astate.IsName("ButtonPress"))
+            {
+                //float buttonWeight = 1.0f;
+                float buttonWeight = anim.GetFloat("buttonClose");
                 // Set the look target position, if one has been assigned
-                if(buttonObject != null) {
+                if (buttonObject != null)
+                {
                     anim.SetLookAtWeight(buttonWeight);
                     anim.SetLookAtPosition(buttonObject.transform.position);
-                    anim.SetIKPositionWeight(AvatarIKGoal.RightHand,buttonWeight);
-                    anim.SetIKPosition(AvatarIKGoal.RightHand,buttonObject.transform.position);
+                    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, buttonWeight);
+                    anim.SetIKPosition(AvatarIKGoal.RightHand,
+                    buttonObject.transform.position);
                 }
             }
             else
             {
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand,0);
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
                 anim.SetLookAtWeight(0);
             }
         }
