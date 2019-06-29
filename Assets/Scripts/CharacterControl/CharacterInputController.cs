@@ -18,11 +18,13 @@ public class CharacterInputController : MonoBehaviour {
     public Camera bucketCam;
     public Camera mainCam;
     private float forwardSpeedLimit = 1f;
-    private float elementCounter;
+
 
     public Inventory inventory;
     public bool isMixing = false;
     public GameObject bucket;
+
+    private CanvasGroup mixingCanvasGroup;
 
     public float Forward
     {
@@ -43,8 +45,9 @@ public class CharacterInputController : MonoBehaviour {
     }
 
     void Start() {
-    	
-    	elementCounter = 0;
+    	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
+        mixingCanvasGroup.interactable = false;
+        mixingCanvasGroup.alpha = 0f;
     }
 
 
@@ -101,7 +104,7 @@ public class CharacterInputController : MonoBehaviour {
 		delayCounter++;
         if (Input.GetKey(KeyCode.M)) {
 
-        	CanvasGroup mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
+        	
 
         	if (delayCounter > 10) {
         		delayCounter = 0;
