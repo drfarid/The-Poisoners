@@ -14,6 +14,8 @@ public class CharacterInputController : MonoBehaviour {
     public float forwardInputFilter = 5f;
     public float turnInputFilter = 5f;
 
+    IInventoryItem currentItem;
+
     public int delayCounter = 0;
     public Camera bucketCam;
     public Camera mainCam;
@@ -117,8 +119,8 @@ public class CharacterInputController : MonoBehaviour {
                     mixingCanvasGroup.alpha = 0f;                   
 
 	        	} else {
-	        		// if (bucket == null)
-	        		// 	bucket = Instantiate(bucket, this.transform.position, Quaternion.identity);
+	        		if (bucket == null)
+	        			bucket = Instantiate(bucket, this.transform.position, Quaternion.identity);
 	        		Vector3 bucketPosition = this.transform.position;
 
 	        		bucketPosition = new Vector3(bucketPosition.x, bucketPosition.y + 1f, bucketPosition.z + 1f);
@@ -152,13 +154,26 @@ public class CharacterInputController : MonoBehaviour {
         //Capture "fire" button for action event
         Action = Input.GetButtonDown("Fire1");
 
-	}
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            inventory.AddItem(currentItem);
+        }
 
 
-	private void OnTriggerEnter(Collider hit) {
+
+
+    }
+
+    private void OnTriggerEnter(Collider hit) {
         IInventoryItem item = hit.GetComponent<IInventoryItem>();
         if (item != null) {
-            inventory.AddItem(item);
+            currentItem = item;
+           // inventory.AddItem(item);
         }
+    }
+
+    private void OnTriggerExit(Collider hit)
+    {
+            currentItem = null;
     }
 }

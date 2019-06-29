@@ -27,6 +27,7 @@ public class Rock : MonoBehaviour, IInventoryItem
 
 	public void OnPickup() {
 		gameObject.SetActive(false);
+
 	}
 
 	public void OnDrop() {

@@ -105,8 +105,19 @@ public class RootMotionControlScript : MonoBehaviour
         anim.SetBool("doButtonPress", inputAction);
         anim.speed = animationSpeed;
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            anim.SetBool("doButtonPress", true);
+        }
 
-        if(inputAction)
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            anim.SetBool("doButtonPress", false);
+        }
+
+
+
+        if (inputAction)
             Debug.Log("Action pressed");
 
     }
