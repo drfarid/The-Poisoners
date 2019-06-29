@@ -13,6 +13,12 @@ public class berries : MonoBehaviour, IInventoryItem
 
 	public Sprite _Image = null;
 
+	public GameObject gObj {
+		get {
+			return gameObject;
+		}
+	}
+
 	public Sprite Image {
 		get {
 			return _Image;
@@ -27,6 +33,7 @@ public class berries : MonoBehaviour, IInventoryItem
 		
 		
 		GameObject bucket = GameObject.Find("S_bucket");
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
 
 		if (bucket.activeSelf) {
 			gameObject.SetActive(true);
@@ -35,13 +42,14 @@ public class berries : MonoBehaviour, IInventoryItem
 			gameObject.transform.position = dropPoint;
 			
 			Vector3 currentScale = transform.localScale;
-			currentScale = new Vector3(currentScale.x / 4, currentScale.y/4, currentScale.z/4);
+			currentScale = new Vector3(currentScale.x / 6, currentScale.y/6, currentScale.z/6);
 			gameObject.transform.localScale = currentScale;
 
 			Collider c = gameObject.GetComponent<Collider>();
 			c.enabled = true;
 			c.isTrigger = false;
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+			bc.addItem(this);
 		}			
 
 	}

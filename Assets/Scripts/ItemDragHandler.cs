@@ -20,11 +20,16 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-    	Image imageHolder = GetComponent<Image>();
-        transform.localPosition = Vector3.zero;
-        imageHolder.enabled = false;
-        imageHolder.sprite = null;
-    	Item.OnDrop();
+        GameObject bucket = GameObject.Find("S_bucket");
+
+        if (bucket.activeSelf) {
+            Image imageHolder = GetComponent<Image>();
+            transform.localPosition = Vector3.zero;
+            imageHolder.enabled = false;
+            imageHolder.sprite = null;
+            Item.OnDrop();
+        }
+    	
 
         
     	

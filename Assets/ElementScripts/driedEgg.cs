@@ -7,7 +7,13 @@ public class driedEgg : MonoBehaviour, IInventoryItem
    
 	public string Name {
 		get {
-			return "dried-egg";
+			return "egg-dried";
+		}
+	}
+
+	public GameObject gObj {
+		get {
+			return gameObject;
 		}
 	}
 
@@ -27,6 +33,7 @@ public class driedEgg : MonoBehaviour, IInventoryItem
 		
 		
 		GameObject bucket = GameObject.Find("S_bucket");
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
 
 		if (bucket.activeSelf) {
 			gameObject.SetActive(true);
@@ -42,6 +49,7 @@ public class driedEgg : MonoBehaviour, IInventoryItem
 			c.enabled = true;
 			c.isTrigger = false;
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+			bc.addItem(this);
 		}			
 
 	}

@@ -11,6 +11,12 @@ public class egg : MonoBehaviour, IInventoryItem
 		}
 	}
 
+	public GameObject gObj {
+		get {
+			return gameObject;
+		}
+	}
+
 	public Sprite _Image = null;
 
 	public Sprite Image {
@@ -27,6 +33,7 @@ public class egg : MonoBehaviour, IInventoryItem
 		
 		
 		GameObject bucket = GameObject.Find("S_bucket");
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
 
 		if (bucket.activeSelf) {
 			gameObject.SetActive(true);
@@ -42,6 +49,7 @@ public class egg : MonoBehaviour, IInventoryItem
 			c.enabled = true;
 			c.isTrigger = false;
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+			bc.addItem(this);
 		}			
 
 	}

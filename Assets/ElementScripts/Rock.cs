@@ -7,11 +7,17 @@ public class Rock : MonoBehaviour, IInventoryItem
    
 	public string Name {
 		get {
-			return "rock-collect";
+			return "rock";
 		}
 	}
 
 	public Sprite _Image = null;
+
+	public GameObject gObj {
+		get {
+			return gameObject;
+		}
+	}
 
 	public Sprite Image {
 		get {
@@ -27,6 +33,7 @@ public class Rock : MonoBehaviour, IInventoryItem
 		
 		
 		GameObject bucket = GameObject.Find("S_bucket");
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
 
 		if (bucket.activeSelf) {
 			gameObject.SetActive(true);
@@ -42,6 +49,8 @@ public class Rock : MonoBehaviour, IInventoryItem
 			c.enabled = true;
 			c.isTrigger = false;
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+
+			bc.addItem(this);
 		}			
 
 	}

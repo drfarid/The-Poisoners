@@ -11,6 +11,12 @@ public class flowerDried : MonoBehaviour, IInventoryItem
 		}
 	}
 
+	public GameObject gObj {
+		get {
+			return gameObject;
+		}
+	}
+
 	public Sprite _Image = null;
 
 	public Sprite Image {
@@ -25,7 +31,7 @@ public class flowerDried : MonoBehaviour, IInventoryItem
 
 	public void OnDrop() {
 		GameObject bucket = GameObject.Find("S_bucket");
-
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
 		if (bucket.activeSelf) {
 			gameObject.SetActive(true);
 			Vector3 dropPoint = bucket.transform.position;
@@ -40,6 +46,7 @@ public class flowerDried : MonoBehaviour, IInventoryItem
 			c.enabled = true;
 			c.isTrigger = false;
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+			bc.addItem(this);
 		}			
 		
 		

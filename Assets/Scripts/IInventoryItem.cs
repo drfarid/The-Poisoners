@@ -6,6 +6,7 @@ using System;
 public interface IInventoryItem {
 	string Name { get; }
 	Sprite Image {get;}
+	GameObject gObj {get;}
 	void OnPickup();
 	void OnDrop(); 
 }

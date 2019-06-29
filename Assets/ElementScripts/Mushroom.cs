@@ -7,7 +7,13 @@ public class Mushroom : MonoBehaviour, IInventoryItem
    
 	public string Name {
 		get {
-			return "rock-collect";
+			return "mushroom";
+		}
+	}
+
+	public GameObject gObj {
+		get {
+			return gameObject;
 		}
 	}
 
@@ -27,7 +33,7 @@ public class Mushroom : MonoBehaviour, IInventoryItem
 		
 		
 		GameObject bucket = GameObject.Find("S_bucket");
-
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
 		if (bucket.activeSelf) {
 			gameObject.SetActive(true);
 			Vector3 dropPoint = bucket.transform.position;
@@ -42,6 +48,7 @@ public class Mushroom : MonoBehaviour, IInventoryItem
 			c.enabled = true;
 			c.isTrigger = false;
 			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+			bc.addItem(this);
 		}			
 
 	}

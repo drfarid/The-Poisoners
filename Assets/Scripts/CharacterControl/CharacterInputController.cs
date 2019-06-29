@@ -101,7 +101,7 @@ public class CharacterInputController : MonoBehaviour {
 		delayCounter++;
         if (Input.GetKey(KeyCode.M)) {
 
-        	
+        	CanvasGroup mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
 
         	if (delayCounter > 10) {
         		delayCounter = 0;
@@ -110,7 +110,8 @@ public class CharacterInputController : MonoBehaviour {
 	        		mainCam.enabled = true;
 	        		bucket.SetActive(false);	
 	        		
-
+                    mixingCanvasGroup.interactable = false;
+                    mixingCanvasGroup.alpha = 0f;                   
 
 	        	} else {
 	        		if (bucket == null)
@@ -123,6 +124,9 @@ public class CharacterInputController : MonoBehaviour {
 	        		bucket.SetActive(true);
 	        		bucketCam.enabled = true;
 	        		mainCam.enabled = false;
+
+                    mixingCanvasGroup.interactable = true;
+                    mixingCanvasGroup.alpha = 1f;
 	        		
 	        	}
         	}
