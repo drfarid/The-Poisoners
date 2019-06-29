@@ -43,7 +43,7 @@ public class Rock : MonoBehaviour, IInventoryItem
 			gameObject.transform.position = dropPoint;
 			
 			Vector3 currentScale = transform.localScale;
-			currentScale = new Vector3(currentScale.x / 2, currentScale.y/2, currentScale.z/2);
+			currentScale = new Vector3(currentScale.x / 3, currentScale.y/3, currentScale.z/3);
 			gameObject.transform.localScale = currentScale;
 
 			Collider c = gameObject.GetComponent<Collider>();

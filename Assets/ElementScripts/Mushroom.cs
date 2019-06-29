@@ -27,11 +27,11 @@ public class Mushroom : MonoBehaviour, IInventoryItem
 
 	public void OnPickup() {
 		gameObject.SetActive(false);
-        GameObject wizard = GameObject.Find("Wizard_Red");
-        Animator anim = wizard.GetComponent<Animator>();
-        anim.SetBool("doButtonPress", true);
-        //anim.SetBool("doButtonPress", false);
-        print("pickup");
+        // GameObject wizard = GameObject.Find("Wizard_Red");
+        // Animator anim = wizard.GetComponent<Animator>();
+        // anim.SetBool("doButtonPress", true);
+        // //anim.SetBool("doButtonPress", false);
+        // print("pickup");
 
     }
 

@@ -37,7 +37,7 @@ public class BucketContainer : MonoBehaviour
 				switch (item.Name)
 		        {
 		        case "rock":
-		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
+		            currentScale = new Vector3(currentScale.x * 3, currentScale.y *3, currentScale.z *3);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "egg":
@@ -49,7 +49,7 @@ public class BucketContainer : MonoBehaviour
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "bushes":
-		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
+		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "crystal":
