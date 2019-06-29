@@ -14,6 +14,7 @@ public class BucketContainer : MonoBehaviour
     	if (newItem != null)
     		items.Add(newItem);
     		itemCounter++;
+    		playerInventory.RemoveItem(newItem);
     }
 
     public int getCount() { return itemCounter; }
@@ -23,7 +24,10 @@ public class BucketContainer : MonoBehaviour
     }
     
     public void cancelMix() {
+
+    	itemCounter = 0;
     	foreach (IInventoryItem item in items) {
+
     		if (item != null) {
     			GameObject itemObj = item.gObj;
 
@@ -33,55 +37,61 @@ public class BucketContainer : MonoBehaviour
 				switch (item.Name)
 		        {
 		        case "rock":
-		            currentScale = new Vector3(currentScale.x * 10, currentScale.y *10, currentScale.z *10);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "egg":
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y * 4, currentScale.z * 4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y * 2, currentScale.z * 2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "berries":
-		            currentScale = new Vector3(currentScale.x * 6, currentScale.y *6, currentScale.z *6);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "bushes":
-		            currentScale = new Vector3(currentScale.x * 20, currentScale.y *20, currentScale.z *20);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "crystal":
-		            currentScale = new Vector3(currentScale.x * 5, currentScale.y *5, currentScale.z *5);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "egg-dried":
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "flower":
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;     
 		        case "flower-dried":
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;      
 		        case "mushroom":
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;      
 		        case "mushroom-dried":
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;      
 		        default:
-		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
+		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        }
 	    		playerInventory.AddItem(item);
+
 	    	
 
 	    	}
     	}
+    	// foreach (IInventoryItem removeItem in items) {
+    	// 	items.Remove(removeItem);
+    	// }
+
+    	items = new List<IInventoryItem>();
     	itemCounter = 0;
     }
 

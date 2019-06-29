@@ -42,7 +42,7 @@ public class egg : MonoBehaviour, IInventoryItem
 			gameObject.transform.position = dropPoint;
 			
 			Vector3 currentScale = transform.localScale;
-			currentScale = new Vector3(currentScale.x / 4, currentScale.y/4, currentScale.z/4);
+			currentScale = new Vector3(currentScale.x / 2, currentScale.y/2, currentScale.z/2);
 			gameObject.transform.localScale = currentScale;
 
 			Collider c = gameObject.GetComponent<Collider>();

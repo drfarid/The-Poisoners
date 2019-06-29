@@ -117,8 +117,8 @@ public class CharacterInputController : MonoBehaviour {
                     mixingCanvasGroup.alpha = 0f;                   
 
 	        	} else {
-	        		if (bucket == null)
-	        			bucket = Instantiate(bucket, this.transform.position, Quaternion.identity);
+	        		// if (bucket == null)
+	        		// 	bucket = Instantiate(bucket, this.transform.position, Quaternion.identity);
 	        		Vector3 bucketPosition = this.transform.position;
 
 	        		bucketPosition = new Vector3(bucketPosition.x, bucketPosition.y + 1f, bucketPosition.z + 1f);
