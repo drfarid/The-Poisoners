@@ -13,11 +13,11 @@ public class ThirdPersonCamera : MonoBehaviour
 	
 	void LateUpdate ()
 	{
-
-        if (desiredPose != null)
-        {
+        // transform.position = GameObject.Find("Wizard Red").transform.position;
+        // if (desiredPose != null)
+        // {
             transform.position = Vector3.SmoothDamp(transform.position, desiredPose.position, ref currentPositionCorrectionVelocity, smoothTime, maxSpeed, Time.deltaTime);
             transform.forward = Vector3.SmoothDamp(transform.forward, desiredPose.forward, ref currentFacingCorrectionVelocity, smoothTime, maxSpeed, Time.deltaTime);
-        }
+        // }
 	}
 }

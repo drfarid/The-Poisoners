@@ -29,7 +29,7 @@ public class WizardController : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         // make coordinates circular
-        //based on http://mathproofs.blogspot.com/2005/07/mapping-square-to-circle.html
+        ////based on http://mathproofs.blogspot.com/2005/07/mapping-square-to-circle.html
         //h = h * Mathf.Sqrt(1f - 0.5f * v * v);
         //v = v * Mathf.Sqrt(1f - 0.5f * h * h);
 
