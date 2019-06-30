@@ -113,13 +113,11 @@ public class RootMotionControlScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             anim.SetTrigger("isHit");
-            //anim.Play("Hit");
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             anim.SetTrigger("isDead");
-            //anim.Play("Hit");
         }
 
         //        if (Input.GetKeyUp(KeyCode.H))
