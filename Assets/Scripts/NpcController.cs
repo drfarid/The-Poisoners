@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -14,6 +16,8 @@ public class NpcController : MonoBehaviour
     public GameObject player;
     Vector2 velocity;
     bool reachedPlayer;
+    int attackCount;
+    int deathCount = 0;
 
 	
 
@@ -22,6 +26,8 @@ public class NpcController : MonoBehaviour
         NpcAnim = GetComponent<Animator>();
         reachedPlayer = false;
         NpcNavmesh.SetDestination(player.transform.position);
+        attackCount = 0;
+        deathCount = 0;
 	}
 
 	void Update() {
@@ -51,6 +57,22 @@ public class NpcController : MonoBehaviour
 			NpcAnim.SetFloat("velx",  0);
 			transform.LookAt(player3d);
 			NpcAnim.SetBool("doButtonPress", true);
+			Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
+			
+			attackCount++;
+			if (attackCount > 20) {
+				playerHealth.value -= 0.1f;
+				attackCount = 0;
+			}
+
+			if (playerHealth.value == 0 || playerHealth.value < 0) {
+				deathCount++;
+				Animator playerAnim = player.GetComponent<Animator>();
+				playerAnim.SetTrigger("isDead");
+				if (deathCount > 100) {
+					SceneManager.LoadScene("mixing_system", LoadSceneMode.Single);
+				}
+			}
 	    }
         
 	}

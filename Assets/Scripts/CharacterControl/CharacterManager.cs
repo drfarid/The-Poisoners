@@ -19,7 +19,8 @@ public class CharacterManager : MonoBehaviour {
 
         foreach (CharacterInputController c in ControllableCharacters)
         {
-            c.enabled = false;
+            if (c != null)
+                c.enabled = false;
         }
             
     }
