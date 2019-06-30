@@ -120,11 +120,10 @@ public class RootMotionControlScript : MonoBehaviour
             anim.SetTrigger("isDead");
         }
 
-        //        if (Input.GetKeyUp(KeyCode.H))
-        //      {
-        //        anim.ResetTrigger("isHit");
-        //  }
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            anim.SetTrigger("isDrinking");
+        }
 
 
         if (inputAction)
