@@ -107,13 +107,25 @@ public class RootMotionControlScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            anim.SetBool("doButtonPress", true);
+            anim.SetTrigger("isPickup");
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            anim.SetBool("doButtonPress", false);
+            anim.SetTrigger("isHit");
+            //anim.Play("Hit");
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            anim.SetTrigger("isDead");
+            //anim.Play("Hit");
+        }
+
+        //        if (Input.GetKeyUp(KeyCode.H))
+        //      {
+        //        anim.ResetTrigger("isHit");
+        //  }
 
 
 
