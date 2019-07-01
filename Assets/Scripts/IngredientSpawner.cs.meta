@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f87bab409e9934c88b279fb480520137
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rock: {fileID: 4588448686570062966, guid: d05316687a821024eb914c22171f3a41, type: 3}
+  - flower: {fileID: 3756638974714698694, guid: 8057f17009773f441bed6b351d85e4d9,
+      type: 3}
+  - egg: {fileID: 6370192179090071458, guid: 3f87a0254e5a27542906777d546cc4bf, type: 3}
+  - mushroom: {fileID: 3260010936195146282, guid: b0c80a942fcda9c408e82936b8eef12f,
+      type: 3}
+  - bush: {fileID: 3181325765687661623, guid: 188bf400084fafd4d9453d93900545eb, type: 3}
+  - terrain: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
