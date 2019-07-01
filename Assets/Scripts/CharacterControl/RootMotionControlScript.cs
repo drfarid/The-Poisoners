@@ -105,8 +105,28 @@ public class RootMotionControlScript : MonoBehaviour
         anim.SetBool("doButtonPress", inputAction);
         anim.speed = animationSpeed;
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            anim.SetTrigger("isPickup");
+        }
 
-        if(inputAction)
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            anim.SetTrigger("isHit");
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            anim.SetTrigger("isDead");
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            anim.SetTrigger("isDrinking");
+        }
+
+
+        if (inputAction)
             Debug.Log("Action pressed");
 
     }

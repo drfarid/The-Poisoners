@@ -7,11 +7,17 @@ public class Rock : MonoBehaviour, IInventoryItem
    
 	public string Name {
 		get {
-			return "rock-collect";
+			return "rock";
 		}
 	}
 
 	public Sprite _Image = null;
+
+	public GameObject gObj {
+		get {
+			return gameObject;
+		}
+	}
 
 	public Sprite Image {
 		get {
@@ -21,5 +27,32 @@ public class Rock : MonoBehaviour, IInventoryItem
 
 	public void OnPickup() {
 		gameObject.SetActive(false);
+
+	}
+
+	public void OnDrop() {
+		
+		
+		GameObject bucket = GameObject.Find("S_bucket");
+		BucketContainer bc = bucket.GetComponent<BucketContainer>();
+
+		if (bucket.activeSelf) {
+			gameObject.SetActive(true);
+			Vector3 dropPoint = bucket.transform.position;
+			dropPoint = new Vector3(dropPoint.x, dropPoint.y + 2f, dropPoint.z);
+			gameObject.transform.position = dropPoint;
+			
+			Vector3 currentScale = transform.localScale;
+			currentScale = new Vector3(currentScale.x / 3, currentScale.y/3, currentScale.z/3);
+			gameObject.transform.localScale = currentScale;
+
+			Collider c = gameObject.GetComponent<Collider>();
+			c.enabled = true;
+			c.isTrigger = false;
+			Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+
+			bc.addItem(this);
+		}			
+
 	}
 }

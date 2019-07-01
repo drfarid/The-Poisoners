@@ -9,20 +9,24 @@ public class CharacterInputController : MonoBehaviour {
 
     private float filteredForwardInput = 0f;
     private float filteredTurnInput = 0f;
-
+    public Slider healthBar;
     public bool InputMapToCircular = true;
     public float forwardInputFilter = 5f;
     public float turnInputFilter = 5f;
+
+    IInventoryItem currentItem;
 
     public int delayCounter = 0;
     public Camera bucketCam;
     public Camera mainCam;
     private float forwardSpeedLimit = 1f;
-    private float elementCounter;
+
 
     public Inventory inventory;
     public bool isMixing = false;
     public GameObject bucket;
+
+    private CanvasGroup mixingCanvasGroup;
 
     public float Forward
     {
@@ -43,8 +47,9 @@ public class CharacterInputController : MonoBehaviour {
     }
 
     void Start() {
-    	
-    	elementCounter = 0;
+    	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
+        mixingCanvasGroup.interactable = false;
+        mixingCanvasGroup.alpha = 0f;
     }
 
 
@@ -110,7 +115,8 @@ public class CharacterInputController : MonoBehaviour {
 	        		mainCam.enabled = true;
 	        		bucket.SetActive(false);	
 	        		
-
+                    mixingCanvasGroup.interactable = false;
+                    mixingCanvasGroup.alpha = 0f;                   
 
 	        	} else {
 	        		if (bucket == null)
@@ -123,6 +129,9 @@ public class CharacterInputController : MonoBehaviour {
 	        		bucket.SetActive(true);
 	        		bucketCam.enabled = true;
 	        		mainCam.enabled = false;
+
+                    mixingCanvasGroup.interactable = true;
+                    mixingCanvasGroup.alpha = 1f;
 	        		
 	        	}
         	}
@@ -145,13 +154,26 @@ public class CharacterInputController : MonoBehaviour {
         //Capture "fire" button for action event
         Action = Input.GetButtonDown("Fire1");
 
-	}
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            inventory.AddItem(currentItem);
+        }
 
 
-	private void OnTriggerEnter(Collider hit) {
+
+
+    }
+
+    private void OnTriggerEnter(Collider hit) {
         IInventoryItem item = hit.GetComponent<IInventoryItem>();
         if (item != null) {
-            inventory.AddItem(item);
+            currentItem = item;
+           // inventory.AddItem(item);
         }
+    }
+
+    private void OnTriggerExit(Collider hit)
+    {
+            currentItem = null;
     }
 }
