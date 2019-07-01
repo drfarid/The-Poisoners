@@ -35,7 +35,7 @@ public class NpcController : MonoBehaviour
 	    Vector3 agent3d = gameObject.transform.position;
 	    Vector3 distance = player3d - agent3d;
 
-		if (distance.magnitude > 1f) {
+		if (distance.magnitude > 1.5f) {
 	           
 	        Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
 	        Vector2 playerLocation = new Vector2(player3d.x, player3d.z);
@@ -61,7 +61,7 @@ public class NpcController : MonoBehaviour
 			
 			attackCount++;
 			if (attackCount > 20) {
-				playerHealth.value -= 0.1f;
+				playerHealth.value -= 0.04f;
 				attackCount = 0;
 			}
 
