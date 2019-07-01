@@ -9,6 +9,9 @@ public class BucketContainer : MonoBehaviour
 	public Inventory playerInventory;
     List<IInventoryItem> items = new List<IInventoryItem>();
     int itemCounter = 0;
+    int mixingCounter = 0;
+    GameObject swirl;
+    
 
     public void addItem(IInventoryItem newItem) {
     	if (newItem != null)
@@ -20,7 +23,28 @@ public class BucketContainer : MonoBehaviour
     public int getCount() { return itemCounter; }
 
     public void mixItems() {
-    	SceneManager.LoadScene("game_alpha1", LoadSceneMode.Single);
+    	
+    	if (items.Count > 1) {
+	    	swirl = GameObject.Find("bucket-swirl-disk");
+	    	swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+
+			foreach(IInventoryItem item in items) {
+				Collider collider = (item as MonoBehaviour).GetComponent<Collider>();
+				
+				collider.enabled = false;
+				
+			}
+			mixingCounter = 0;
+			StartCoroutine(waitForSwirl());
+			
+		}
+
+    	
+    }
+    public IEnumerator waitForSwirl() {
+    	yield return new WaitForSeconds(1);
+    	swirl.SetActive(false);
+    	playerInventory.AddItem(GameObject.Find("HallucinatePotion").GetComponent<IInventoryItem>());
     }
     
     public void cancelMix() {
