@@ -154,14 +154,20 @@ public class CharacterInputController : MonoBehaviour {
         //Capture "fire" button for action event
         Action = Input.GetButtonDown("Fire1");
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            inventory.AddItem(currentItem);
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    inventory.AddItem(currentItem);
+        //}
 
 
 
 
+    }
+
+    public void PickupItem()
+    {
+        inventory.AddItem(currentItem);
+        print("pickup");
     }
 
     private void OnTriggerEnter(Collider hit) {
