@@ -19,6 +19,13 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     }
 
+    // public void OnMouseDown() {
+    //     GameObject player = GameObject.Find("Wizard Red");
+    //     Animator pAnim = player.GetComponent<Animator>();
+    //     pAnim.SetTrigger("isDrinking");
+    //     Debug.Log("drink");
+    // }
+
     public void OnEndDrag(PointerEventData eventData) {
         GameObject bucket = GameObject.Find("S_bucket");
         if (bucket.activeSelf) {

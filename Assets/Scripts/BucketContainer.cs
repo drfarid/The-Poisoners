@@ -48,8 +48,8 @@ public class BucketContainer : MonoBehaviour
     	yield return new WaitForSeconds(1);
     	
     	swirlMesh.enabled = false;
-    	
-    	playerInventory.AddItem(GameObject.Find("HallucinatePotion").GetComponent<IInventoryItem>());
+    	GameObject newPotion = Instantiate(GameObject.Find("HallucinatePotion"), new Vector3(0,0,0), Quaternion.identity);
+    	playerInventory.AddItem(newPotion.GetComponent<IInventoryItem>());
 
     }
     
