@@ -11,6 +11,7 @@ public class BucketContainer : MonoBehaviour
     int itemCounter = 0;
     int mixingCounter = 0;
     GameObject swirl;
+    Renderer swirlMesh;
     
 
     public void addItem(IInventoryItem newItem) {
@@ -26,7 +27,8 @@ public class BucketContainer : MonoBehaviour
     	Debug.Log("count: " + items.Count);
     	if (items.Count > 1) {
 	    	swirl = GameObject.Find("bucket-swirl-disk");	
-    		swirl.SetActive(true);
+    		swirlMesh = swirl.GetComponent<Renderer>();
+    		swirlMesh.enabled = true;
     		swirl.transform.position = GameObject.Find("S_bucket").transform.position;
     		
 	    	
@@ -45,7 +47,7 @@ public class BucketContainer : MonoBehaviour
     public IEnumerator waitForSwirl() {
     	yield return new WaitForSeconds(1);
     	
-    	swirl.SetActive(false);
+    	swirlMesh.enabled = false;
     	
     	playerInventory.AddItem(GameObject.Find("HallucinatePotion").GetComponent<IInventoryItem>());
 
