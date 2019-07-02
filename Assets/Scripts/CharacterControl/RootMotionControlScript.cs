@@ -137,6 +137,8 @@ public class RootMotionControlScript : MonoBehaviour
                 if (itemObject != null) {
                     Debug.Log("item: " + itemObject.Name);
                     if (itemObject.Name == "HallucinationPotion") {
+                        Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
+                        playerHealth.value += 0.2f;
                         image.enabled = false;
                         image.sprite = null;
                         itemDragHandler.Item = null;

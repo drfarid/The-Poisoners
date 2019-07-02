@@ -69,8 +69,8 @@ public class NpcController : MonoBehaviour
 				deathCount++;
 				Animator playerAnim = player.GetComponent<Animator>();
 				playerAnim.SetTrigger("isDead");
-				if (deathCount > 100) {
-					SceneManager.LoadScene("main_menu", LoadSceneMode.Single);
+				if (deathCount > 200) {
+					SceneManager.LoadScene("mixing_system", LoadSceneMode.Single);
 				}
 			}
 	    }
