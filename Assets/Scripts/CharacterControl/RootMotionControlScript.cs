@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,7 +15,7 @@ public class RootMotionControlScript : MonoBehaviour
     private Animator anim;	
     private Rigidbody rbody;
     private CharacterInputController cinput;
-
+    public Inventory playerInventory;
     private Transform leftFoot;
     private Transform rightFoot;
 
@@ -122,7 +123,29 @@ public class RootMotionControlScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            anim.SetTrigger("isDrinking");
+            Transform inventoryPanel = GameObject.Find("Inventory").GetComponent<Transform>();
+            
+            foreach (Transform findPotion in inventoryPanel) {
+                
+                Transform imageTransform = findPotion.GetChild(0).GetChild(0);
+                Image image = imageTransform.GetComponent<Image>();
+                ItemDragHandler itemDragHandler = imageTransform.GetComponent<ItemDragHandler>();
+                
+
+                IInventoryItem itemObject = itemDragHandler.Item;
+                
+                if (itemObject != null) {
+                    Debug.Log("item: " + itemObject.Name);
+                    if (itemObject.Name == "HallucinationPotion") {
+                        image.enabled = false;
+                        image.sprite = null;
+                        itemDragHandler.Item = null;
+                        anim.SetTrigger("isDrinking");
+                        break;
+                    }
+                }
+            }
+            
         }
 
 
