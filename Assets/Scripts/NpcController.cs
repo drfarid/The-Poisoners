@@ -57,7 +57,7 @@ public class NpcController : MonoBehaviour
 			NpcAnim.SetFloat("velx",  0);
 			transform.LookAt(player3d);
 			NpcAnim.SetBool("doButtonPress", true);
-			Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
+			// Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
 			
 			attackCount++;
 			if (attackCount > 20) {
@@ -65,14 +65,14 @@ public class NpcController : MonoBehaviour
 				attackCount = 0;
 			}
 
-			if (playerHealth.value == 0 || playerHealth.value < 0) {
-				deathCount++;
-				Animator playerAnim = player.GetComponent<Animator>();
-				playerAnim.SetTrigger("isDead");
-				if (deathCount > 100) {
-					SceneManager.LoadScene("mixing_system", LoadSceneMode.Single);
-				}
-			}
+			// if (playerHealth.value == 0 || playerHealth.value < 0) {
+			// 	deathCount++;
+			// 	Animator playerAnim = player.GetComponent<Animator>();
+			// 	playerAnim.SetTrigger("isDead");
+			// 	if (deathCount > 100) {
+			// 		SceneManager.LoadScene("mixing_system", LoadSceneMode.Single);
+			// 	}
+			// }
 	    }
         
 	}

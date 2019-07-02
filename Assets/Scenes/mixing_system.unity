@@ -1140,6 +1140,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 402793167096965818, guid: 4a26bd3d2873946c0956b520aa18144a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6944321031875176709, guid: 4a26bd3d2873946c0956b520aa18144a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7153,6 +7158,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 402793167096965818, guid: 4a26bd3d2873946c0956b520aa18144a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6944321031875176709, guid: 4a26bd3d2873946c0956b520aa18144a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8173,6 +8183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 402793167096965818, guid: 4a26bd3d2873946c0956b520aa18144a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6944321031875176709, guid: 4a26bd3d2873946c0956b520aa18144a,
         type: 3}

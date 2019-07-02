@@ -23,18 +23,19 @@ public class BucketContainer : MonoBehaviour
     public int getCount() { return itemCounter; }
 
     public void mixItems() {
-    	
+    	Debug.Log("count: " + items.Count);
     	if (items.Count > 1) {
-	    	swirl = GameObject.Find("bucket-swirl-disk");
-	    	swirl.transform.position = GameObject.Find("S_bucket").transform.position;
-
+	    	swirl = GameObject.Find("bucket-swirl-disk");	
+    		swirl.SetActive(true);
+    		swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+    		
+	    	
+	    		
 			foreach(IInventoryItem item in items) {
-				Collider collider = (item as MonoBehaviour).GetComponent<Collider>();
-				
-				collider.enabled = false;
-				
+				item.gObj.SetActive(false);	
 			}
 			mixingCounter = 0;
+			items = new List<IInventoryItem>();
 			StartCoroutine(waitForSwirl());
 			
 		}
@@ -43,8 +44,11 @@ public class BucketContainer : MonoBehaviour
     }
     public IEnumerator waitForSwirl() {
     	yield return new WaitForSeconds(1);
+    	
     	swirl.SetActive(false);
+    	
     	playerInventory.AddItem(GameObject.Find("HallucinatePotion").GetComponent<IInventoryItem>());
+
     }
     
     public void cancelMix() {

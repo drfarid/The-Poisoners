@@ -9,7 +9,6 @@ public class CharacterInputController : MonoBehaviour {
 
     private float filteredForwardInput = 0f;
     private float filteredTurnInput = 0f;
-    public Slider healthBar;
     public bool InputMapToCircular = true;
     public float forwardInputFilter = 5f;
     public float turnInputFilter = 5f;
