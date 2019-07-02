@@ -3376,7 +3376,7 @@ GameObject:
   - component: {fileID: 719192010}
   - component: {fileID: 719192009}
   m_Layer: 0
-  m_Name: Inventory
+  m_Name: Inventory-Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
