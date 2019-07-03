@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 #if UNITY_EDITOR
@@ -143,6 +144,7 @@ public class RootMotionControlScript : MonoBehaviour
                         image.sprite = null;
                         itemDragHandler.Item = null;
                         anim.SetTrigger("isDrinking");
+                        StartCoroutine(waitForDrink());
                         break;
                     }
                 }
@@ -156,7 +158,13 @@ public class RootMotionControlScript : MonoBehaviour
 
     }
 
+     public IEnumerator waitForDrink() {
+        yield return new WaitForSeconds(2);
 
+        SceneManager.LoadScene("hallucination");
+        
+
+    }
     //This is a physics callback
     void OnCollisionEnter(Collision collision)
     {
