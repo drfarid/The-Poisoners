@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CharacterAnimation.unity
     guid: 2292a340ffd1e4a26ae08d48e33613d5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/mixing_system.unity
     guid: fe6d68c5d02f9424faa9b893ff332a8f
   - enabled: 1
-    path: Assets/Scenes/game_alpha1.unity
+    path: Assets/Scenes/hallucination.unity
     guid: 2ade050851ad74789b297c289bc71f24
   m_configObjects: {}
