@@ -54,15 +54,18 @@ public class CharacterInputController : MonoBehaviour {
 
     void Start() {
     	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
-        tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
         mixingCanvasGroup.interactable = false;
         mixingCanvasGroup.alpha = 0f;
+        if (tutorialMode)
+        {
+            tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
+        }
     }
 
 
-        
 
-	void Update () {
+
+    void Update () {
 		
         //GetAxisRaw() so we can do filtering here instead of the InputManager
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
