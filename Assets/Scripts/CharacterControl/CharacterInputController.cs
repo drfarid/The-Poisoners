@@ -12,6 +12,10 @@ public class CharacterInputController : MonoBehaviour {
     public bool InputMapToCircular = true;
     public float forwardInputFilter = 5f;
     public float turnInputFilter = 5f;
+    public bool tutorialMode = false;
+    public GameObject tutorialNPC;
+
+
 
     IInventoryItem currentItem;
 
@@ -26,6 +30,9 @@ public class CharacterInputController : MonoBehaviour {
     public GameObject bucket;
 
     private CanvasGroup mixingCanvasGroup;
+    private Text tutorialText;
+    private int tutorialStage =1;
+
 
     public float Forward
     {
@@ -47,6 +54,7 @@ public class CharacterInputController : MonoBehaviour {
 
     void Start() {
     	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
+        tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
         mixingCanvasGroup.interactable = false;
         mixingCanvasGroup.alpha = 0f;
     }
@@ -105,9 +113,15 @@ public class CharacterInputController : MonoBehaviour {
 		delayCounter++;
         if (Input.GetKey(KeyCode.M)) {
 
-        	
+            if (tutorialMode)
+            {
+                //tutorialStage = 7
+                tutorialText.text = "Drag your items into the bucket one at a time. (click)";
+                tutorialStage = 8;
+            }
 
-        	if (delayCounter > 10) {
+
+            if (delayCounter > 10) {
         		delayCounter = 0;
 	        	if (bucket.activeSelf == true) {
 	        		bucketCam.enabled = false;
@@ -153,20 +167,71 @@ public class CharacterInputController : MonoBehaviour {
         //Capture "fire" button for action event
         Action = Input.GetButtonDown("Fire1");
 
+        if (tutorialMode && Action)
+        {
+            //tutorialStage = 5
+            tutorialNPC.SetActive(false);
+            tutorialText.text = "Good job!  You got him! (click)";
+            tutorialStage = 6;
+
+        }
+
         //if (Input.GetKeyDown(KeyCode.F))
         //{
         //    inventory.AddItem(currentItem);
         //}
 
-
-
-
+        if (tutorialMode == true)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                switch (tutorialStage) 
+                {
+                    case 1: 
+                        tutorialText.text = "Move to the mushroom and pick it up with the F key.";
+                        tutorialStage = 2;
+                        break;
+                    case 4:
+                        tutorialText.text = "Hit the Poisoner with Ctrl.  Don't let him steal! (click)";
+                        tutorialNPC.SetActive(true);
+                        tutorialStage = 5;
+                        break;
+                    case 6:
+                        tutorialText.text = "Now you need to mix your poison.  Press M to mix.";
+                        tutorialStage = 7;
+                        break;
+                    case 8:
+                        tutorialText.text = "Press Mix when your bucket is full.  You are ready to start the game!";
+                        tutorialStage = 7;
+                        break;
+                }
+            }
+        }
     }
 
     public void PickupItem()
     {
         inventory.AddItem(currentItem);
-        print("pickup");
+
+        if (tutorialMode == true)
+        {
+            //tutorialStage == 2
+            if (currentItem.Name == "mushroom")
+            {
+                tutorialText.text = "Great!  Now pick up that berry.";
+                tutorialStage = 3;
+            }
+
+            //tutorialStage == 3
+            if (currentItem.Name == "berries")
+            {
+                tutorialText.text = "Awesome!  But watch out!  Another Poisoner is here. (click)";
+                tutorialStage = 4;
+            }
+
+            print("pickup");
+            print(currentItem.Name);
+        }
     }
 
     private void OnTriggerEnter(Collider hit) {
