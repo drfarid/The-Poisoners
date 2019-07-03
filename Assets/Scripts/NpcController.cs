@@ -35,7 +35,7 @@ public class NpcController : MonoBehaviour
 	    Vector3 agent3d = gameObject.transform.position;
 	    Vector3 distance = player3d - agent3d;
 
-		if (distance.magnitude > 1.5f) {
+		if (distance.magnitude >= 5f) {
 	           
 	        Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
 	        Vector2 playerLocation = new Vector2(player3d.x, player3d.z);
@@ -53,9 +53,11 @@ public class NpcController : MonoBehaviour
 	        NpcAnim.SetBool("doButtonPress", false);
 
 	    } else {
+            reachedPlayer= true;
 	    	NpcAnim.SetFloat("vely",  0);
 			NpcAnim.SetFloat("velx",  0);
-			transform.LookAt(player3d);
+            NpcAnim.SetFloat("velz",  0);
+			//transform.LookAt(player3d);
 			NpcAnim.SetBool("doButtonPress", true);
 			Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
 			
