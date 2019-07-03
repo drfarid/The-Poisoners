@@ -3168,7 +3168,6 @@ GameObject:
   - component: {fileID: 947889173}
   - component: {fileID: 947889172}
   - component: {fileID: 947889171}
-  - component: {fileID: 947889174}
   m_Layer: 5
   m_Name: mix_button
   m_TagString: Untagged
@@ -3290,20 +3289,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947889169}
   m_CullTransparentMesh: 0
---- !u!114 &947889174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947889169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe823c924509f0f45a8d92863aa5f3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInventory: {fileID: 0}
-  tutorialMode: 1
 --- !u!1 &955267837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4785,7 +4770,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 719192009}
-  tutorialMode: 0
 --- !u!1001 &1476742637
 PrefabInstance:
   m_ObjectHideFlags: 0
