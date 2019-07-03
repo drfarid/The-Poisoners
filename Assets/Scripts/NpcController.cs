@@ -63,7 +63,7 @@ public class NpcController : MonoBehaviour
 			
 			attackCount++;
 			if (attackCount > 20) {
-				playerHealth.value -= 0.04f;
+				//playerHealth.value -= 0.04f;
 				attackCount = 0;
 			}
 

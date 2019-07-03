@@ -118,6 +118,7 @@ public class CharacterInputController : MonoBehaviour {
 
 		delayCounter++;
         if (Input.GetKey(KeyCode.M)) {
+            print("got mix");
 
             if (tutorialMode)
             {
@@ -155,7 +156,7 @@ public class CharacterInputController : MonoBehaviour {
 	        	}
         	}
 	    } else if (Input.GetKey(KeyCode.Tab)) {
-
+            print("got map");
             mapView = !mapView;
 
             if (mapView) {
