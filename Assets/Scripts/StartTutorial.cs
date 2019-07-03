@@ -12,7 +12,7 @@ public class StartTutorial : MonoBehaviour
     }
 
     public void tutorialStart() {
-    	SceneManager.LoadScene("game_alpha1");
+    	SceneManager.LoadScene("tutorial");
     }
 
     // Update is called once per frame

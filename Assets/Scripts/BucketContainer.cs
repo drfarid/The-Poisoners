@@ -12,7 +12,7 @@ public class BucketContainer : MonoBehaviour
     int mixingCounter = 0;
     GameObject swirl;
     Renderer swirlMesh;
-    
+
 
     public void addItem(IInventoryItem newItem) {
     	if (newItem != null)
@@ -39,10 +39,11 @@ public class BucketContainer : MonoBehaviour
 			mixingCounter = 0;
 			items = new List<IInventoryItem>();
 			StartCoroutine(waitForSwirl());
-			
-		}
 
-    	
+
+        }
+
+
     }
     public IEnumerator waitForSwirl() {
     	yield return new WaitForSeconds(1);
@@ -51,8 +52,15 @@ public class BucketContainer : MonoBehaviour
     	GameObject newPotion = Instantiate(GameObject.Find("HallucinatePotion"), new Vector3(0,0,0), Quaternion.identity);
     	playerInventory.AddItem(newPotion.GetComponent<IInventoryItem>());
 
+        CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<CharacterInputController>();
+        if(cic.tutorialMode)
+        {
+            print("Switching scene");
+            SceneManager.LoadScene("mixing_system");
+        }
+
     }
-    
+
     public void cancelMix() {
 
     	itemCounter = 0;
