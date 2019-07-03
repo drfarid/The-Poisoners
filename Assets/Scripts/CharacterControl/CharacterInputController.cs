@@ -163,10 +163,12 @@ public class CharacterInputController : MonoBehaviour {
                 playerMarker.SetActive(true);
                 mainCam.enabled = false;
                 mapViewCam.enabled = true;
+                Time.timeScale = 0f
             } else {
                 mapViewCam.enabled = false;
                 mainCam.enabled = true;
                 playerMarker.SetActive(false);
+                Time.timeScale = 1f
             }
 
         }
