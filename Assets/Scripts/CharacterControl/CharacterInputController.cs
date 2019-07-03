@@ -200,10 +200,10 @@ public class CharacterInputController : MonoBehaviour {
 
         }
 
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    inventory.AddItem(currentItem);
-        //}
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+           // inventory.AddItem(currentItem);
+        }
 
         if (tutorialMode == true)
         {
@@ -262,7 +262,7 @@ public class CharacterInputController : MonoBehaviour {
         IInventoryItem item = hit.GetComponent<IInventoryItem>();
         if (item != null) {
             currentItem = item;
-            inventory.AddItem(item);
+            // inventory.AddItem(item);
         }
     }
 
