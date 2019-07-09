@@ -31,6 +31,11 @@ public class RootMotionControlScript : MonoBehaviour
     public float rootMovementSpeed = 1f;
     public float rootTurnSpeed = 1f;
 
+
+    int speedBoostDuration = 1000;
+    bool isInSpeedBoost = false;
+    int speedMultiplier = 1;
+
     public GameObject buttonObject;
 
     public bool IsGrounded
@@ -79,6 +84,16 @@ public class RootMotionControlScript : MonoBehaviour
 
     void Update()
     {
+        
+        if (isInSpeedBoost) {  
+            speedMultiplier = 2;
+            speedBoostDuration--;
+            if (speedBoostDuration == 0) {
+                isInSpeedBoost = false;
+                speedBoostDuration = 1000;
+                speedMultiplier = 1;
+            }
+        }
 
         float inputForward=0f;
         float inputTurn=0f;
@@ -105,7 +120,9 @@ public class RootMotionControlScript : MonoBehaviour
         anim.SetFloat("vely", inputForward);
         anim.SetBool("isFalling", !isGrounded);
         anim.SetBool("doButtonPress", inputAction);
-        anim.speed = animationSpeed;
+        
+        
+        anim.speed = animationSpeed * speedMultiplier;
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -144,8 +161,14 @@ public class RootMotionControlScript : MonoBehaviour
                         image.sprite = null;
                         itemDragHandler.Item = null;
                         anim.SetTrigger("isDrinking");
-                        StartCoroutine(waitForDrink());
+                        StartCoroutine(waitForDrink("hallucination"));
                         break;
+                    } else if (itemObject.Name == "SpeedPotion") {
+                        image.enabled = false;
+                        image.sprite = null;
+                        itemDragHandler.Item = null;
+                        anim.SetTrigger("isDrinking");
+                        StartCoroutine(waitForDrink("speed"));
                     }
                 }
             }
@@ -158,10 +181,13 @@ public class RootMotionControlScript : MonoBehaviour
 
     }
 
-     public IEnumerator waitForDrink() {
+     public IEnumerator waitForDrink(string potion) {
         yield return new WaitForSeconds(2);
-
-        SceneManager.LoadScene("hallucination");
+        if (potion == "hallucination") {
+            SceneManager.LoadScene("hallucination");
+        } else if (potion == "speed") {
+            isInSpeedBoost = true;
+        }
         
 
     }

@@ -34,11 +34,13 @@ public class NpcGuard : MonoBehaviour
 		Vector3 player3d = player.transform.position;
 	    Vector3 agent3d = gameObject.transform.position;
 	    Vector3 distance = player3d - agent3d;
+	    float playerGuardDistance = (player.transform.position - guardObject.transform.position).magnitude;
+
 	    float attackDistance;
 	    float distanceFromGuard = (guardObject.transform.position - gameObject.transform.position).magnitude;
 
 	    
-	    if (distanceFromGuard < 20f && distance.magnitude < 20f) {
+	    if (playerGuardDistance < 25f) {
 			if (distance.magnitude >= 2f) {
 		           
 		        Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
@@ -76,22 +78,24 @@ public class NpcGuard : MonoBehaviour
 					Animator playerAnim = player.GetComponent<Animator>();
 					playerAnim.SetTrigger("isDead");
 					if (deathCount > 200) {
-						SceneManager.LoadScene("mixing_system", LoadSceneMode.Single);
+						SceneManager.LoadScene("the_desert", LoadSceneMode.Single);
 					}
 				}
 		    }
 	    } else {	
-	    	Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
-	        Vector2 guardLocation = new Vector2(guardObject.transform.position.x, guardObject.transform.position.z);
-	        Vector2 velocityUnit = (-guardLocation + agentLocation).normalized;
-	        
-	    	NpcAnim.SetFloat("vely",  Mathf.Sqrt(velocityUnit.y * velocityUnit.y) * 1.5f);
-			NpcAnim.SetFloat("velx",  velocityUnit.x);
-	        
-	        // NpcNavmesh.destination = player3d;
-			transform.LookAt(guardObject.transform.position);
-	        // // transform.position = player3d;
-	        NpcNavmesh.SetDestination(guardObject.transform.position);
+	    	if (distanceFromGuard > 2f) {
+		    	Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
+		        Vector2 guardLocation = new Vector2(guardObject.transform.position.x, guardObject.transform.position.z);
+		        Vector2 velocityUnit = (-guardLocation + agentLocation).normalized;
+		        
+		    	NpcAnim.SetFloat("vely",  Mathf.Sqrt(velocityUnit.y * velocityUnit.y) * 1.5f);
+				NpcAnim.SetFloat("velx",  velocityUnit.x);
+		        
+		        // NpcNavmesh.destination = player3d;
+				transform.LookAt(guardObject.transform.position);
+		        // // transform.position = player3d;
+		        NpcNavmesh.SetDestination(guardObject.transform.position);
+		    }
 		    
 	    }
         
