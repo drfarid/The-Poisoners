@@ -32,6 +32,7 @@ public class CharacterInputController : MonoBehaviour {
     public bool isMixing = false;
     public GameObject bucket;
 
+    private CanvasGroup potionTableGroup;
     private CanvasGroup mixingCanvasGroup;
     private Text tutorialText;
     private int tutorialStage =1;
@@ -58,6 +59,9 @@ public class CharacterInputController : MonoBehaviour {
     void Start() {
     	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
         mixingCanvasGroup.interactable = false;
+        potionTableGroup = GameObject.Find("Potion_Table_Canvas").GetComponent<CanvasGroup>();
+        potionTableGroup.interactable = false;
+     	potionTableGroup.alpha = 0f;
         mixingCanvasGroup.alpha = 0f;
         if (tutorialMode)
         {
@@ -175,7 +179,14 @@ public class CharacterInputController : MonoBehaviour {
         }
 	    
 
-
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+        	if (potionTableGroup.alpha == 0f) {
+        		potionTableGroup.alpha = 1f; 	
+        	} else {
+        		potionTableGroup.alpha = 0f;
+        	}
+        	
+        }
 
         //do some filtering of our input as well as clamp to a speed limit
         filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v, 
