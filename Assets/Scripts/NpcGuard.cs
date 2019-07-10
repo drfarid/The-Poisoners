@@ -18,6 +18,8 @@ public class NpcGuard : MonoBehaviour
     bool reachedPlayer;
     int attackCount;
     int deathCount = 0;
+    int healthPoints = 2;
+    int playerAttackCount;
 
 	
 
@@ -28,6 +30,8 @@ public class NpcGuard : MonoBehaviour
         NpcNavmesh.SetDestination(player.transform.position);
         attackCount = 0;
         deathCount = 0;
+        playerAttackCount = 0;
+        healthPoints = 2;
 	}
 
 	void Update() {
@@ -40,42 +44,64 @@ public class NpcGuard : MonoBehaviour
 	    float distanceFromGuard = (guardObject.transform.position - gameObject.transform.position).magnitude;
 
 	    
+	    //if player is less than 25 units away from the guarded object
 	    if (playerGuardDistance < 25f) {
+
+	    	//if the player is more than 2 units away from the agent
 			if (distance.magnitude >= 2f) {
 		           
+		        //get the velocity of the guard
 		        Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
 		        Vector2 playerLocation = new Vector2(player3d.x, player3d.z);
 		        Vector2 velocityUnit = (-playerLocation + agentLocation).normalized;
 		        
 
-		   
+		   		//set the velocity in x and y direction
 		    	NpcAnim.SetFloat("vely",  Mathf.Sqrt(velocityUnit.y * velocityUnit.y) * 1.5f);
 				NpcAnim.SetFloat("velx",  velocityUnit.x);
 		        
-		        // NpcNavmesh.destination = player3d;
+		       	//look at the player and move towards him
 				transform.LookAt(player3d);
-		        // // transform.position = player3d;
 		        NpcNavmesh.SetDestination(player.transform.position);	
 		        NpcAnim.SetBool("doButtonPress", false);
 
 		    } else {
+	            //player is in range and is attacking
+		    	Animator playerAnim = player.GetComponent<Animator>();
+		    	if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Combat")) {
+		    		Debug.Log("player attacked");
+		    		playerAttackCount++;
+		    		if (playerAttackCount > 50) {
+		    			healthPoints--;
+		    			playerAttackCount = 0;	
+		    		}
+		    	}
+
+		    	if (healthPoints == 0 || healthPoints < 0) {
+    				this.gameObject.SetActive(false);
+    			}
+
+		    	//reached the player, stop moving
 	            reachedPlayer= true;
 		    	NpcAnim.SetFloat("vely",  0);
 				NpcAnim.SetFloat("velx",  0);
 	            NpcAnim.SetFloat("velz",  0);
-				//transform.LookAt(player3d);
+				
+				//start attacking and get the slider
 				NpcAnim.SetBool("doButtonPress", true);
 				Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
 				
+				//attack the player every 20th frame
 				attackCount++;
 				if (attackCount > 20) {
 					playerHealth.value -= 0.04f;
 					attackCount = 0;
 				}
 
+				//if health of player is zero then restart the game
 				if (playerHealth.value == 0 || playerHealth.value < 0) {
 					deathCount++;
-					Animator playerAnim = player.GetComponent<Animator>();
+					
 					playerAnim.SetTrigger("isDead");
 					if (deathCount > 200) {
 						SceneManager.LoadScene("the_desert", LoadSceneMode.Single);
@@ -100,7 +126,6 @@ public class NpcGuard : MonoBehaviour
 	    }
         
 	}
-
 
 
 	
