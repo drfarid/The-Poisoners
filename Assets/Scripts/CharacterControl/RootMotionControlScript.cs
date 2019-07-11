@@ -31,7 +31,7 @@ public class RootMotionControlScript : MonoBehaviour
     public float rootMovementSpeed = 1f;
     public float rootTurnSpeed = 1f;
 
-
+    GameObject shovel;
     int speedBoostDuration = 1000;
     bool isInSpeedBoost = false;
     int speedMultiplier = 1;
@@ -139,6 +139,14 @@ public class RootMotionControlScript : MonoBehaviour
             anim.SetTrigger("isDead");
         }
 
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            anim.SetTrigger("isDigging");
+            shovel = GameObject.Find("Shovel_Holder").transform.GetChild(0).gameObject;
+            shovel.SetActive(true);
+            StartCoroutine(waitForDig());
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             Transform inventoryPanel = GameObject.Find("Inventory").GetComponent<Transform>();
@@ -169,6 +177,7 @@ public class RootMotionControlScript : MonoBehaviour
                         itemDragHandler.Item = null;
                         anim.SetTrigger("isDrinking");
                         StartCoroutine(waitForDrink("speed"));
+                        break;
                     }
                 }
             }
@@ -181,15 +190,19 @@ public class RootMotionControlScript : MonoBehaviour
 
     }
 
-     public IEnumerator waitForDrink(string potion) {
+    public IEnumerator waitForDrink(string potion) {
         yield return new WaitForSeconds(2);
         if (potion == "hallucination") {
             SceneManager.LoadScene("hallucination");
         } else if (potion == "speed") {
             isInSpeedBoost = true;
         }
-        
 
+    }
+
+     public IEnumerator waitForDig() {
+        yield return new WaitForSeconds(3);
+        shovel.SetActive(false);
     }
     //This is a physics callback
     void OnCollisionEnter(Collision collision)
