@@ -13,6 +13,7 @@ public class NpcGuard : MonoBehaviour
     public NavMeshAgent NpcNavmesh;
     public GameObject player;
     public GameObject guardObject;
+    public bool isInnerGuard;
 
     Vector2 velocity;
     bool reachedPlayer;
@@ -43,9 +44,15 @@ public class NpcGuard : MonoBehaviour
 	    float attackDistance;
 	    float distanceFromGuard = (guardObject.transform.position - gameObject.transform.position).magnitude;
 
+	    float chaseThreshold;
+	    if (isInnerGuard) {
+	    	chaseThreshold = 20f;
+	    } else {
+	    	chaseThreshold = 45f;
+	    }
 	    
 	    //if player is less than 25 units away from the guarded object
-	    if (playerGuardDistance < 25f) {
+	    if (playerGuardDistance < chaseThreshold) {
 
 	    	//if the player is more than 2 units away from the agent
 			if (distance.magnitude >= 2f) {
@@ -94,7 +101,7 @@ public class NpcGuard : MonoBehaviour
 				//attack the player every 20th frame
 				attackCount++;
 				if (attackCount > 20) {
-					playerHealth.value -= 0.04f;
+					playerHealth.value -= 0.02f;
 					attackCount = 0;
 				}
 
