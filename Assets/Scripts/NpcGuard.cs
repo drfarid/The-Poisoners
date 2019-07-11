@@ -48,7 +48,7 @@ public class NpcGuard : MonoBehaviour
 	    if (isInnerGuard) {
 	    	chaseThreshold = 20f;
 	    } else {
-	    	chaseThreshold = 45f;
+	    	chaseThreshold = 35f;
 	    }
 	    
 	    //if player is less than 25 units away from the guarded object
@@ -64,7 +64,7 @@ public class NpcGuard : MonoBehaviour
 		        
 
 		   		//set the velocity in x and y direction
-		    	NpcAnim.SetFloat("vely",  Mathf.Sqrt(velocityUnit.y * velocityUnit.y) * 1.5f);
+		    	NpcAnim.SetFloat("vely",  Mathf.Sqrt(velocityUnit.y * velocityUnit.y));
 				NpcAnim.SetFloat("velx",  velocityUnit.x);
 		        
 		       	//look at the player and move towards him
