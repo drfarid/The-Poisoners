@@ -29,8 +29,8 @@ public class IngredientSpawner : MonoBehaviour
                 if (coll.Raycast(ray, out hit, 200.0f))
                 {
                     new_loc = hit.point;
-                    Debug.Log("Placing ingredient at ");
-                    Debug.Log(new_loc);
+                    //Debug.Log("Placing ingredient at ");
+                    //Debug.Log(new_loc);
                     Instantiate(ingredient, new_loc, Quaternion.identity);
                 }
                 
