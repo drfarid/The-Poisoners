@@ -145,6 +145,53 @@ public class RootMotionControlScript : MonoBehaviour
             shovel = GameObject.Find("Shovel_Holder").transform.GetChild(0).gameObject;
             shovel.SetActive(true);
             StartCoroutine(waitForDig());
+            
+            GameObject sandLayer1 = GameObject.Find("Sand_Layers").transform.GetChild(0).gameObject;
+            GameObject sandLayer2 = GameObject.Find("Sand_Layers").transform.GetChild(1).gameObject;
+            GameObject sandLayer3 = GameObject.Find("Sand_Layers").transform.GetChild(2).gameObject;
+            GameObject sandLayer4 = GameObject.Find("Sand_Layers").transform.GetChild(3).gameObject;
+            GameObject sandLayer5 = GameObject.Find("Sand_Layers").transform.GetChild(4).gameObject;
+            GameObject sandLayer6 = GameObject.Find("Sand_Layers").transform.GetChild(5).gameObject;
+
+            //gem1 pile
+            bool pile1;
+            
+            //gem2 pile
+            bool pile2;
+
+            //if near enough to pile 1
+            if ((this.gameObject.transform.position - sandLayer6.transform.position).magnitude < 10f) {
+            	pile2 = false;
+            	pile1 = true;
+            	if (pile1) {
+	            	if (sandLayer6.activeSelf == true) {
+	            		sandLayer6.SetActive(false);
+	            	} else if (sandLayer5.activeSelf == true) {
+	            		sandLayer5.SetActive(false);
+	            	} else if (sandLayer4.activeSelf == true) {
+	            		sandLayer4.SetActive(false);
+	            	}
+	            }
+            }
+
+            //if near enough to pile 2
+            if ((this.gameObject.transform.position - sandLayer3.transform.position).magnitude < 10f) {
+            	pile2 = true;
+            	pile1 = false;
+            	if (pile2) {
+	            	if (sandLayer3.activeSelf == true) {
+	            		sandLayer3.SetActive(false);
+	            	} else if (sandLayer2.activeSelf == true) {
+	            		sandLayer2.SetActive(false);
+	            	} else if (sandLayer1.activeSelf == true) {
+	            		sandLayer1.SetActive(false);
+	            	}
+	            }
+            }
+
+            
+
+          
         }
 
         if (Input.GetKeyDown(KeyCode.P))
