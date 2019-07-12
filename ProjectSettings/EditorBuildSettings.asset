@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/hallucination.unity
     guid: 2ade050851ad74789b297c289bc71f24
+  - enabled: 1
+    path: Assets/Scenes/Thomas/hallucination2.unity
+    guid: e8cf5ef9bcb6fbc4393c92338c0aab14
   m_configObjects: {}

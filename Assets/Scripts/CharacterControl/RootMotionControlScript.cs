@@ -195,7 +195,11 @@ public class RootMotionControlScript : MonoBehaviour
     public IEnumerator waitForDrink(string potion) {
         yield return new WaitForSeconds(2);
         if (potion == "hallucination") {
-            SceneManager.LoadScene("hallucination");
+        	if (SceneManager.GetActiveScene().name == "the_desert") {
+            	SceneManager.LoadScene("hallucination2");
+        	} else {
+        		SceneManager.LoadScene("hallucination");
+        	}
         } else if (potion == "speed") {
             isInSpeedBoost = true;
         }
