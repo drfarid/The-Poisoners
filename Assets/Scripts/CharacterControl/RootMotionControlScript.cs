@@ -207,6 +207,9 @@ public class RootMotionControlScript : MonoBehaviour
     }
 
      public IEnumerator waitForDig() {
+
+        //int biome = GameObject.Find("Wizard_Holder").GetComponent<BiomeLocator>().getCurrentBiome();
+        //print(biome);
      	int waitTime = 3;
      	if (isInSpeedBoost)
      		waitTime = 1;
