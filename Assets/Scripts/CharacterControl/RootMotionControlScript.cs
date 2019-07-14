@@ -141,11 +141,12 @@ public class RootMotionControlScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            anim.SetTrigger("isDigging");
-            shovel = GameObject.Find("Shovel_Holder").transform.GetChild(0).gameObject;
-            shovel.SetActive(true);
-            StartCoroutine(waitForDig());
-          
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Digging")) {
+	            anim.SetTrigger("isDigging");
+	            shovel = GameObject.Find("Shovel_Holder").transform.GetChild(0).gameObject;
+	            shovel.SetActive(true);
+	            StartCoroutine(waitForDig());
+          	}
           
         }
 

@@ -150,7 +150,7 @@ public class BucketContainer : MonoBehaviour
 					itemObj.transform.localScale = currentScale;
 		            break;
 		        case "flower":
-		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
+		            currentScale = new Vector3(currentScale.x * 4, currentScale.y *4, currentScale.z *4);
 					itemObj.transform.localScale = currentScale;
 		            break;     
 		        case "flower-dried":
