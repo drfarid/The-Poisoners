@@ -152,6 +152,7 @@ public class RootMotionControlScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
+            print("P button pressed.");
             Transform inventoryPanel = GameObject.Find("Inventory").GetComponent<Transform>();
             
             foreach (Transform findPotion in inventoryPanel) {
@@ -162,10 +163,12 @@ public class RootMotionControlScript : MonoBehaviour
                 
 
                 IInventoryItem itemObject = itemDragHandler.Item;
+                print(itemObject.Name);
                 
                 if (itemObject != null) {
                     Debug.Log("item: " + itemObject.Name);
                     if (itemObject.Name == "HallucinationPotion") {
+                        print("Drinking hallucination potion");
                         Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
                         playerHealth.value += 0.2f;
                         image.enabled = false;
@@ -175,6 +178,7 @@ public class RootMotionControlScript : MonoBehaviour
                         StartCoroutine(waitForDrink("hallucination"));
                         break;
                     } else if (itemObject.Name == "SpeedPotion") {
+                        print("Drinking speed potion");
                         image.enabled = false;
                         image.sprite = null;
                         itemDragHandler.Item = null;
@@ -182,6 +186,24 @@ public class RootMotionControlScript : MonoBehaviour
                         StartCoroutine(waitForDrink("speed"));
                         break;
                     }
+                    else if (itemObject.Name == "StrengthPotion")
+                    {
+                        print("Drinking strength potion");
+                        image.enabled = false;
+                        image.sprite = null;
+                        itemDragHandler.Item = null;
+                        anim.SetTrigger("isDrinking");
+                        StartCoroutine(waitForDrink("strength"));
+                        break;
+                    }
+                    else
+                    {
+                        print("Unknown potion");
+                    }
+                }
+                else
+                {
+                    print("Empty itemobject for potion.  Nothing to drink.");
                 }
             }
             
@@ -202,6 +224,8 @@ public class RootMotionControlScript : MonoBehaviour
         		SceneManager.LoadScene("hallucination");
         	}
         } else if (potion == "speed") {
+            isInSpeedBoost = true;
+        } else if (potion == "strength") {
             isInSpeedBoost = true;
         }
 

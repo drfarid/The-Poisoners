@@ -24,14 +24,19 @@ public class BucketContainer : MonoBehaviour
     public int getCount() { return itemCounter; }
 
     public void mixItems() {
-    	
-    	bool speedPotion = false;
-    	bool hallucinatePotion = false;
+
+        bool speedPotion = false;
+        bool strengthPotion = false;
+        bool hallucinatePotion = false;
     	bool hasFlower = false;
     	bool hasRock = false;
-    	bool hasGem = false;
+        bool hasGem = false;
 
-    	if (SceneManager.GetActiveScene().name == "the_desert") {
+        bool hasBerry = false;
+        bool hasShroom = false;
+        bool hasHoney = false;
+
+        if (SceneManager.GetActiveScene().name == "the_desert") {
 
 	    	foreach (IInventoryItem item in items) {
 	    		if (item.Name == "rock") {
@@ -80,9 +85,71 @@ public class BucketContainer : MonoBehaviour
 				StartCoroutine(waitForSwirl("hallucination"));
 			}
 		}
+        else if (SceneManager.GetActiveScene().name == "forest")
+        {
+
+            foreach (IInventoryItem item in items)
+            {
+                if (item.Name == "berries")
+                {
+                    hasBerry = true;
+                }
+                else if (item.Name == "mushroom")
+                {
+                    hasShroom = true;
+                }
+                else
+                {
+                    print("Unknown item: " + item.Name);
+                }
+            }
+
+            if (hasBerry && hasShroom && !hasHoney)
+            {
+                strengthPotion = true;
+            }
+            else if (hasFlower && hasRock && hasGem)
+            {
+                hallucinatePotion = true;
+            }
 
 
-        
+            if (strengthPotion)
+            {
+                swirl = GameObject.Find("bucket-swirl-disk");
+                swirlMesh = swirl.GetComponent<Renderer>();
+                swirlMesh.enabled = true;
+                swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+
+                foreach (IInventoryItem item in items)
+                {
+                    item.gObj.SetActive(false);
+                }
+                mixingCounter = 0;
+                items = new List<IInventoryItem>();
+                StartCoroutine(waitForSwirl("strength"));
+
+
+            }
+            else if (hallucinatePotion)
+            {
+                swirl = GameObject.Find("bucket-swirl-disk");
+                swirlMesh = swirl.GetComponent<Renderer>();
+                swirlMesh.enabled = true;
+                swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+
+                foreach (IInventoryItem item in items)
+                {
+                    item.gObj.SetActive(false);
+                }
+                mixingCounter = 0;
+                items = new List<IInventoryItem>();
+                StartCoroutine(waitForSwirl("hallucination"));
+            }
+        }
+
+
+
 
 
     }
@@ -98,12 +165,15 @@ public class BucketContainer : MonoBehaviour
 	    } else if (potion == "speed") {
 	    	GameObject speedPotion = Instantiate(GameObject.Find("SpeedPotion"), new Vector3(0,0,0), Quaternion.identity);
 	    	playerInventory.AddItem(speedPotion.GetComponent<IInventoryItem>());
-	    }
-        
+        } else if (potion == "strength") {
+            GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
+            playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
+        }
 
 
 
-        CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<CharacterInputController>();
+
+CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<CharacterInputController>();
         if(cic.tutorialMode)
         {
             print("Switching scene");
