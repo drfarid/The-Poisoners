@@ -7,7 +7,7 @@ public class StrengthPotion : MonoBehaviour, IInventoryItem
    
 	public string Name {
 		get {
-			return "SpeedPotion";
+			return "StrengthPotion";
 		}
 	}
 

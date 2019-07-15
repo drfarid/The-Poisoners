@@ -163,7 +163,7 @@ public class RootMotionControlScript : MonoBehaviour
                 
 
                 IInventoryItem itemObject = itemDragHandler.Item;
-                print(itemObject.Name);
+                // print(itemObject.Name);
                 
                 if (itemObject != null) {
                     Debug.Log("item: " + itemObject.Name);
