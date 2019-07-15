@@ -8,12 +8,13 @@ public class CrowBehavior : MonoBehaviour
     public GameObject canvas;
     public GameObject player;
     Vector3 positionOffset = new Vector3(2f, 3f, 0);
+    bool finishedMessage;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        this.Speak("this is a test message");
+        finishedMessage = false;
     }
 
     // Update is called once per frame
@@ -26,13 +27,29 @@ public class CrowBehavior : MonoBehaviour
     {
         // face direction
         this.transform.position = player.transform.position + player.transform.forward + positionOffset;
+        Vector3 birdLookAt = new Vector3(player.transform.position.x, player.transform.position.y + 3f, player.transform.position.z);
+        transform.LookAt(birdLookAt);
     }
 
-    void Speak(string message)
+    public void Speak(string message, int duration)
     {
         Text messageText = canvas.GetComponent<Text>();
         messageText.text = message;
-        Debug.Log(message);
+        StartCoroutine(waitForMessage(duration));
+    }
+
+    public IEnumerator waitForMessage(int time) {
+        yield return new WaitForSeconds(time);
+        Text messageText = canvas.GetComponent<Text>();
+        messageText.text = "";
+    }
+
+    public void desertScript() {
+    	Speak("1", 5);
+    	StartCoroutine(waitForMessage(5));
+    	Speak("2", 5);
+    	StartCoroutine(waitForMessage(5));
+    	Speak("3", 5);
     }
 
 }
