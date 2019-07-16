@@ -82,8 +82,7 @@ public class RootMotionControlScript : MonoBehaviour
             Debug.Log("One of the feet could not be found");
 
 
-        crow = GameObject.Find("Crow_GameObject").GetComponent<CrowBehavior>();
-        crow.desertScript();
+        
     	
             
     }
@@ -136,6 +135,13 @@ public class RootMotionControlScript : MonoBehaviour
         
         
         anim.speed = animationSpeed * speedMultiplier;
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            // testing only
+            EventManager.TriggerEvent<SpeakEvent, string>("testing event system");
+        }
+
 
         if (Input.GetKeyDown(KeyCode.F))
         {
