@@ -7,32 +7,65 @@ public class CrowBehavior : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject player;
-    Vector3 positionOffset = new Vector3(2f, 3f, 0);
+    Vector3 heightOffset = new Vector3(0, 2.2f, 0);
+    bool finishedMessage;
+    public Image closedMouth;
+    public Image openMouth;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        this.Speak("this is a test message");
+        finishedMessage = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.FlyTo();
+        this.Follow();
     }
 
-    void FlyTo() 
+    void Follow() 
     {
-        // face direction
-        this.transform.position = player.transform.position + player.transform.forward + positionOffset;
+        // stay to right of player
+        var leftOfPlayer = -Vector3.Cross(player.transform.forward, player.transform.up);
+        this.transform.position = player.transform.position + leftOfPlayer + heightOffset;
+
+        // face direction of player's movement
+        Vector3 birdLookAt = player.transform.position + heightOffset + 5 * player.transform.forward;
+        transform.LookAt(birdLookAt);
     }
 
-    void Speak(string message)
+    public void speak(string message)
     {
         Text messageText = canvas.GetComponent<Text>();
         messageText.text = message;
+        finishedMessage = false;
+        //Image crowAvatar = GameObject.Find("Crow_Avatar").GetComponent<Image>();
+        Button x = canvas.GetComponentInChildren<Button>();
+        x.gameObject.SetActive(true);
+
+    }
+
+    public void closeMessage()
+    {
+        finishedMessage = true;
+        EventManager.TriggerEvent<CloseMessageEvent>();
+        // hide X button
+        Button x = canvas.GetComponentInChildren<Button>();
+        x.gameObject.SetActive(false);
+    }
+
+    // public IEnumerator waitForMessage(int time) {
+    //     yield return new WaitForSeconds(time);
+    //     Text messageText = canvas.GetComponent<Text>();
+    //     messageText.text = "";
+    // }
+
+    public void desertScript() {
+        string message = "THIS IS A TEST event";
         Debug.Log(message);
+    	EventManager.TriggerEvent<SpeakEvent, string>(message);
     }
 
 }

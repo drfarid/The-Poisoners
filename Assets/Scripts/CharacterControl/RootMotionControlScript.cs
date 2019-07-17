@@ -36,6 +36,7 @@ public class RootMotionControlScript : MonoBehaviour
     public bool isInSpeedBoost = false;
     public bool isInStrengthBoost = false;
     int speedMultiplier = 1;
+    CrowBehavior crow;
 
     public GameObject buttonObject;
 
@@ -47,8 +48,13 @@ public class RootMotionControlScript : MonoBehaviour
         }
     }
 
+    public IEnumerator waitForMessage(int time) {
+        yield return new WaitForSeconds(time);
+    }
+
     void Awake()
     {
+    	
 
         anim = GetComponent<Animator>();
 
@@ -75,6 +81,10 @@ public class RootMotionControlScript : MonoBehaviour
 
         if (leftFoot == null || rightFoot == null)
             Debug.Log("One of the feet could not be found");
+
+
+        
+    	
             
     }
         
@@ -85,6 +95,8 @@ public class RootMotionControlScript : MonoBehaviour
 
     void Update()
     {
+
+
         
         if (isInSpeedBoost) {  
             speedMultiplier = 2;
@@ -124,6 +136,13 @@ public class RootMotionControlScript : MonoBehaviour
         
         
         anim.speed = animationSpeed * speedMultiplier;
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            // testing only
+            EventManager.TriggerEvent<SpeakEvent, string>("testing event system");
+        }
+
 
         if (Input.GetKeyDown(KeyCode.F))
         {
