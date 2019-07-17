@@ -33,7 +33,8 @@ public class RootMotionControlScript : MonoBehaviour
 
     GameObject shovel;
     int speedBoostDuration = 1000;
-    bool isInSpeedBoost = false;
+    public bool isInSpeedBoost = false;
+    public bool isInStrengthBoost = false;
     int speedMultiplier = 1;
 
     public GameObject buttonObject;
@@ -226,10 +227,34 @@ public class RootMotionControlScript : MonoBehaviour
         } else if (potion == "speed") {
             isInSpeedBoost = true;
         } else if (potion == "strength") {
-            isInSpeedBoost = true;
+            isInStrengthBoost = true;
+            //this.transform.localScale += new Vector3(5f, 5f, 5f);
+            StartCoroutine(growWizard(true));
         }
 
     }
+    public IEnumerator growWizard(bool grow)
+    {
+        //Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, 4f, Camera.main.transform.position.z);
+        //Camera.main.transform.Rotate(10f, 0f, 0f, Space.Self);
+
+        for (int i = 0; i <= 300; i++)
+        {
+
+            Vector3 scale = new Vector3(0.01f, 0.01f, 0.01f);
+
+            if (grow)
+            {
+                this.transform.localScale += scale;
+            }
+            else
+            {
+                this.transform.localScale -= scale;
+            }
+            yield return new WaitForSeconds(0);
+        }
+    }
+
 
      public IEnumerator waitForDig() {
 
