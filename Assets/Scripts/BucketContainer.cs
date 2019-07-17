@@ -232,7 +232,7 @@ CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<Charac
 					itemObj.transform.localScale = currentScale;
 		            break;      
 		        case "mushroom":
-		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
+		            currentScale = new Vector3(currentScale.x * 3, currentScale.y *3, currentScale.z *3);
 					itemObj.transform.localScale = currentScale;
 		            break;      
 		        case "mushroom-dried":
