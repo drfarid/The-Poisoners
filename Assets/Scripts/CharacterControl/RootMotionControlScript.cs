@@ -252,15 +252,33 @@ public class RootMotionControlScript : MonoBehaviour
         }
 
     }
+
+    public void growRoutine(bool grow)
+    {
+        StartCoroutine(growWizard(grow));
+    }
+
     public IEnumerator growWizard(bool grow)
     {
-        //Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, 4f, Camera.main.transform.position.z);
-        //Camera.main.transform.Rotate(10f, 0f, 0f, Space.Self);
 
         for (int i = 0; i <= 300; i++)
         {
 
-            Vector3 scale = new Vector3(0.01f, 0.01f, 0.01f);
+            Vector3 scale = new Vector3(0.008f, 0.008f, 0.008f);
+
+
+            GameObject go = new GameObject("ScalingParent");
+            if (this.transform != null)
+            {
+
+                go.transform.parent = this.transform.parent;
+
+                go.transform.Translate(this.transform.position);
+
+                this.transform.parent = go.transform;
+
+            }
+
 
             if (grow)
             {
@@ -268,7 +286,8 @@ public class RootMotionControlScript : MonoBehaviour
             }
             else
             {
-                this.transform.localScale -= scale;
+                go.transform.localScale -= scale;
+                //this.transform.position = myPos;
             }
             yield return new WaitForSeconds(0);
         }

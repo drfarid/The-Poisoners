@@ -98,6 +98,10 @@ public class BucketContainer : MonoBehaviour
                 {
                     hasShroom = true;
                 }
+                else if (item.Name == "honey")
+                {
+                    hasHoney = true;
+                }
                 else
                 {
                     print("Unknown item: " + item.Name);
@@ -108,7 +112,7 @@ public class BucketContainer : MonoBehaviour
             {
                 strengthPotion = true;
             }
-            else if (hasFlower && hasRock && hasGem)
+            else if (hasBerry && hasShroom && hasHoney)
             {
                 hallucinatePotion = true;
             }

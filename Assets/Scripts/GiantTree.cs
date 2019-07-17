@@ -40,14 +40,14 @@ public class GiantTree : MonoBehaviour
         	    
         //player is in range and is attacking - knock the tree down
 		Animator playerAnim = player.GetComponent<Animator>();
-		if (distance.magnitude < 10f &&
+		if (distance.magnitude < 5f &&
             playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Combat")) {
     		Debug.Log("player attacked tree");
             if (rMotion.isInStrengthBoost)
             {
                 print("knocking down tree");
                 anim.SetTrigger("fall");
-                //StartCoroutine(rMotion.growWizard(false));
+                //rMotion.growRoutine(false);
             }
             else
             {
@@ -56,4 +56,6 @@ public class GiantTree : MonoBehaviour
         }
 
     }
+
+
 }
