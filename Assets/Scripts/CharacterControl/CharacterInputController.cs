@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterInputController : MonoBehaviour {
 
@@ -57,12 +58,17 @@ public class CharacterInputController : MonoBehaviour {
     }
 
     void Start() {
+
     	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
         mixingCanvasGroup.interactable = false;
         potionTableGroup = GameObject.Find("Potion_Table_Canvas").GetComponent<CanvasGroup>();
         potionTableGroup.interactable = false;
      	potionTableGroup.alpha = 0f;
         mixingCanvasGroup.alpha = 0f;
+        
+
+        
+
         if (tutorialMode)
         {
             tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();

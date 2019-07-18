@@ -54,7 +54,6 @@ public class RootMotionControlScript : MonoBehaviour
 
     void Awake()
     {
-    	
 
         anim = GetComponent<Animator>();
 
@@ -84,7 +83,12 @@ public class RootMotionControlScript : MonoBehaviour
 
 
         
-    	
+    	if (SceneManager.GetActiveScene().name == "win_scene") {
+            GameObject rareOne = GameObject.Find("rareOne");
+            GameObject rareTwo = GameObject.Find("rareTwo");
+            playerInventory.AddItem(rareOne.GetComponent<IInventoryItem>());
+            playerInventory.AddItem(rareTwo.GetComponent<IInventoryItem>());
+        }
             
     }
         

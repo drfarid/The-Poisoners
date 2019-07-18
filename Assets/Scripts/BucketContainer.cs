@@ -238,7 +238,15 @@ CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<Charac
 		        case "mushroom-dried":
 		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
-		            break;      
+		            break;  
+		        case "rareOne":
+		        	currentScale = new Vector3(currentScale.x * 3, currentScale.y *3, currentScale.z *3);
+					itemObj.transform.localScale = currentScale;
+					break;
+				 case "rareTwo":
+		        	currentScale = new Vector3(currentScale.x * 3, currentScale.y *3, currentScale.z *3);
+					itemObj.transform.localScale = currentScale;
+					break;
 		        default:
 		            currentScale = new Vector3(currentScale.x * 2, currentScale.y *2, currentScale.z *2);
 					itemObj.transform.localScale = currentScale;
