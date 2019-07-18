@@ -150,6 +150,36 @@ public class BucketContainer : MonoBehaviour
                 items = new List<IInventoryItem>();
                 StartCoroutine(waitForSwirl("hallucination"));
             }
+        } else if (SceneManager.GetActiveScene().name == "win_scene") {
+        	bool hasOne = false;
+        	bool hasTwo = false;
+
+        	foreach (IInventoryItem item in items)
+            {
+                if (item.Name == "rareOne")
+                {
+                    hasOne = true;
+                }
+                else if (item.Name == "rareTwo")
+                {
+                    hasTwo = true;
+                }
+            }
+
+            if (hasOne && hasTwo) {
+            	swirl = GameObject.Find("bucket-swirl-disk");
+                swirlMesh = swirl.GetComponent<Renderer>();
+                swirlMesh.enabled = true;
+                swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+
+                foreach (IInventoryItem item in items)
+                {
+                    item.gObj.SetActive(false);
+                }
+                mixingCounter = 0;
+                items = new List<IInventoryItem>();
+                StartCoroutine(waitForSwirl("mith"));
+            }
         }
 
 
@@ -171,6 +201,11 @@ public class BucketContainer : MonoBehaviour
 	    	playerInventory.AddItem(speedPotion.GetComponent<IInventoryItem>());
         } else if (potion == "strength") {
             GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
+            playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
+        } else if (potion == "mith") {
+      		GameObject speedPotion = Instantiate(GameObject.Find("SpeedPotion"), new Vector3(0,0,0), Quaternion.identity);
+	    	playerInventory.AddItem(speedPotion.GetComponent<IInventoryItem>());  	
+	    	GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
             playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
         }
 

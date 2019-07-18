@@ -165,15 +165,19 @@ public class RootMotionControlScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Digging")) {
-	            anim.SetTrigger("isDigging");
-	            shovel = GameObject.Find("Shovel_Holder").transform.GetChild(0).gameObject;
-	            shovel.SetActive(true);
-	            StartCoroutine(waitForDig());
-          	}
-          
-        }
-
+            
+            if (SceneManager.GetActiveScene().name == "the_desert") {
+            	if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Digging")) {
+		            anim.SetTrigger("isDigging");
+		            shovel = GameObject.Find("Shovel_Holder").transform.GetChild(0).gameObject;
+		            shovel.SetActive(true);
+		            StartCoroutine(waitForDig());
+	          	}
+        	} else if (SceneManager.GetActiveScene().name == "win_scene") {
+        		Rigidbody playerBody = this.gameObject.GetComponent<Rigidbody>();
+        		playerBody.AddForce(0, 10f, 0, ForceMode.VelocityChange);
+        	}
+		}
         if (Input.GetKeyDown(KeyCode.P))
         {
             print("P button pressed.");
