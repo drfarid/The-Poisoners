@@ -37,7 +37,7 @@ public class BossTwo : MonoBehaviour
      	}  
 
      	float distanceToPlayer = (this.transform.position - player.transform.position).magnitude;
-     	if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Combat") && distanceToPlayer < 2f) {
+     	if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Combat") && distanceToPlayer < 4f) {
     		playerAttackCount++;
     		if (playerAttackCount > 50) {
     			Debug.Log("Attacked boss");
