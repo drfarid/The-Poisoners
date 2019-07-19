@@ -55,6 +55,7 @@ public class RootMotionControlScript : MonoBehaviour
     void Awake()
     {
 
+
         anim = GetComponent<Animator>();
 
         if (anim == null)
@@ -224,9 +225,19 @@ public class RootMotionControlScript : MonoBehaviour
                         StartCoroutine(waitForDrink("strength"));
                         break;
                     }
-                    else
+                    else if (itemObject.Name == "MithPotion")
                     {
-                        print("Unknown potion");
+                    	image.enabled = false;
+                        image.sprite = null;
+                        itemDragHandler.Item = null;
+                    	anim.SetTrigger("isDrinking");
+                        StartCoroutine(waitForDrink("strength"));
+                        StartCoroutine(waitForDrink("speed"));
+                        if (SceneManager.GetActiveScene().name == "win_scene") {
+				            CanvasGroup winCanvas = GameObject.Find("Winning_Canvas").GetComponent<CanvasGroup>();
+				            winCanvas.interactable = true;
+				            winCanvas.alpha = 1f;
+				        }
                     }
                 }
                 else

@@ -203,10 +203,8 @@ public class BucketContainer : MonoBehaviour
             GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
             playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
         } else if (potion == "mith") {
-      		GameObject speedPotion = Instantiate(GameObject.Find("SpeedPotion"), new Vector3(0,0,0), Quaternion.identity);
-	    	playerInventory.AddItem(speedPotion.GetComponent<IInventoryItem>());  	
-	    	GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
-            playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
+      		GameObject mithPotion = Instantiate(GameObject.Find("MithPotion"), new Vector3(0,0,0), Quaternion.identity);
+	    	playerInventory.AddItem(mithPotion.GetComponent<IInventoryItem>());  	
         }
 
 

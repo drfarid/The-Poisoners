@@ -58,6 +58,13 @@ public class CharacterInputController : MonoBehaviour {
     }
 
     void Start() {
+        
+
+        if (SceneManager.GetActiveScene().name == "win_scene") {
+            CanvasGroup winCanvas = GameObject.Find("Winning_Canvas").GetComponent<CanvasGroup>();
+            winCanvas.interactable = false;
+            winCanvas.alpha = 0f;
+        }
 
     	mixingCanvasGroup = GameObject.Find("Mixing_Canvas").GetComponent<CanvasGroup>();
         mixingCanvasGroup.interactable = false;
