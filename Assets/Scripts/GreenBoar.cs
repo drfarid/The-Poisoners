@@ -69,6 +69,8 @@ public class GreenBoar : MonoBehaviour
             NpcAnim.SetFloat("velx", 0);
             NpcAnim.SetFloat("velz", 0);
 
+            float distanceToPlayer = (this.transform.position - player.transform.position).magnitude;
+            Animator playerAnim = player.GetComponent<Animator>();
             if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Combat") && distanceToPlayer <5f)
             {
                 playerAttackCount++;
