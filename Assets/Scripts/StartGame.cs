@@ -12,7 +12,7 @@ public class StartGame : MonoBehaviour
     }
 
     public void GameStart() {
-    	SceneManager.LoadScene("mixing_system");
+    	SceneManager.LoadScene("forest");
     }
 
     // Update is called once per frame

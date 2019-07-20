@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Thomas/win_scene.unity
     guid: 7c12145fd85fb5547a2e7b3476fe9767
+  - enabled: 1
+    path: Assets/Scenes/Robert/forest.unity
+    guid: e04116ffdb6554fd982ff0508c833d86
   m_configObjects: {}

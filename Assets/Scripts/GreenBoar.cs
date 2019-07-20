@@ -87,8 +87,8 @@ public class GreenBoar : MonoBehaviour
             if (healthPoints == 0)
             {
                 this.gameObject.SetActive(false);
-                GameObject rareTwo = GameObject.Find("rareTwo");
-                rareTwo.transform.position = new Vector3(0, 2f, 0);
+                GameObject rareOne = GameObject.Find("rareOne");
+                rareOne.transform.position = new Vector3(0, 2f, 0);
             }
 
             //start attacking and get the slider
