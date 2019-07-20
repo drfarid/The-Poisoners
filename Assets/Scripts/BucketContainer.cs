@@ -87,7 +87,7 @@ public class BucketContainer : MonoBehaviour
 		}
         else if (SceneManager.GetActiveScene().name == "forest")
         {
-
+            print("strength");
             foreach (IInventoryItem item in items)
             {
                 if (item.Name == "berries")

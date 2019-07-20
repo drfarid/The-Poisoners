@@ -229,7 +229,7 @@ public class CharacterInputController : MonoBehaviour {
            // inventory.AddItem(currentItem);
         }
 
-        if (tutorialMode == true)
+        if (tutorialMode)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -261,7 +261,7 @@ public class CharacterInputController : MonoBehaviour {
     {
         inventory.AddItem(currentItem);
 
-        if (tutorialMode == true)
+        if (tutorialMode)
         {
             //tutorialStage == 2
             if (currentItem.Name == "mushroom")

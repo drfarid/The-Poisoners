@@ -35,11 +35,11 @@ public class CharacterManager : MonoBehaviour {
         if (charIndex >= ControllableCharacters.Length)
             charIndex = ControllableCharacters.Length - 1;
 
-        ControllableCharacters[charIndex].enabled = true;
+        //ControllableCharacters[charIndex].enabled = true;
 
-        thirdPersonCamera.desiredPose = ControllableCharacters[charIndex].transform.Find(CameraPositionMarkerName);
+        //thirdPersonCamera.desiredPose = ControllableCharacters[charIndex].transform.Find(CameraPositionMarkerName);
 
-        Debug.Log("Character " + ControllableCharacters[charIndex].Name + " was selected.");
+        //Debug.Log("Character " + ControllableCharacters[charIndex].Name + " was selected.");
    
     }
 
@@ -61,8 +61,8 @@ public class CharacterManager : MonoBehaviour {
 	
 	void Start () {
 		
-        if (thirdPersonCamera == null)
-            Debug.LogError("camera must be set");
+//        if (thirdPersonCamera == null)
+//          Debug.LogError("camera must be set");
 
         setCharacter(nextCharacterIndex);
         incrementCharacterIndex();

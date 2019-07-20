@@ -2904,7 +2904,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243824736}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 469c0a7ed8c9b6149abd767203ffc59a, type: 3}
   m_Name: 
@@ -2955,6 +2955,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.169579, y: 3.3080192, z: 4.9573936}
   m_Center: {x: 0.09397864, y: 1.1540297, z: 0.91031116}
+--- !u!114 &1243824742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243824736}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2ad1c1b12120a40a330fee813c00a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NpcAnim: {fileID: 1243824740}
+  NpcNavmesh: {fileID: 0}
+  player: {fileID: 568921903}
+  guardObject: {fileID: 0}
+  isInnerGuard: 0
+--- !u!114 &1243824744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243824736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1bf4be7915b46e99c6f6808079c4ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NpcAnim: {fileID: 1243824740}
+  NpcNavmesh: {fileID: 0}
+  player: {fileID: 568921903}
+  isInnerGuard: 0
 --- !u!1 &1260678439
 GameObject:
   m_ObjectHideFlags: 0
