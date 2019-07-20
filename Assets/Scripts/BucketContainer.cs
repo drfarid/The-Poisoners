@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class BucketContainer : MonoBehaviour
 {
@@ -36,7 +37,44 @@ public class BucketContainer : MonoBehaviour
         bool hasShroom = false;
         bool hasHoney = false;
 
-        if (SceneManager.GetActiveScene().name == "the_desert") {
+        if (SceneManager.GetActiveScene().name == "tutorial")
+        {
+
+            foreach (IInventoryItem item in items)
+            {
+                if (item.Name == "mushroom")
+                {
+                    hasShroom = true;
+                }
+                if (item.Name == "berries")
+                {
+                    hasBerry = true;
+                }
+            }
+
+            if (hasShroom && hasBerry)
+            {
+                hallucinatePotion = true;
+            }
+
+
+            if (hallucinatePotion)
+            {
+                swirl = GameObject.Find("bucket-swirl-disk");
+                swirlMesh = swirl.GetComponent<Renderer>();
+                swirlMesh.enabled = true;
+                swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+
+                foreach (IInventoryItem item in items)
+                {
+                    item.gObj.SetActive(false);
+                }
+                mixingCounter = 0;
+                items = new List<IInventoryItem>();
+                StartCoroutine(waitForSwirl("hallucination"));
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "the_desert") {
 
 	    	foreach (IInventoryItem item in items) {
 	    		if (item.Name == "rock") {
@@ -210,11 +248,14 @@ public class BucketContainer : MonoBehaviour
 
 
 
-CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<CharacterInputController>();
+        CharacterInputController cic = GameObject.Find("Wizard Red").GetComponent<CharacterInputController>();
         if(cic.tutorialMode)
         {
+
             print("Switching scene");
-            SceneManager.LoadScene("mixing_system");
+            Text tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
+            tutorialText.text = "Great, you've mixed your first poison!  Close the mixer with M.";
+
         }
 
     }

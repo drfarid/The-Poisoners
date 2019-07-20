@@ -139,9 +139,18 @@ public class CharacterInputController : MonoBehaviour {
 
             if (tutorialMode)
             {
-                //tutorialStage = 7
-                tutorialText.text = "Drag your items into the bucket one at a time. (click)";
-                tutorialStage = 8;
+                if (tutorialStage == 7)
+                {
+                    tutorialText.text = "Drag your items into the bucket one at a time. (click)";
+                    tutorialStage = 8;
+                }
+                else if (tutorialStage == 9)
+                {
+                    //tutorialStage10
+                    tutorialText.text = "Now ingest the poison with P to build your immunity.  The game will start.";
+                    tutorialStage = 10;
+
+                }
             }
 
 
@@ -249,8 +258,8 @@ public class CharacterInputController : MonoBehaviour {
                         tutorialStage = 7;
                         break;
                     case 8:
-                        tutorialText.text = "Press Mix when your bucket is full.  You are ready to start the game!";
-                        tutorialStage = 7;
+                        tutorialText.text = "Press Mix when your bucket is full.";
+                        tutorialStage = 9;
                         break;
                 }
             }
