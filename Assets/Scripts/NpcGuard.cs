@@ -28,7 +28,7 @@ public class NpcGuard : MonoBehaviour
 		NpcNavmesh = GetComponent<NavMeshAgent>();
         NpcAnim = GetComponent<Animator>();
         reachedPlayer = false;
-        NpcNavmesh.SetDestination(player.transform.position);
+        NpcNavmesh.destination = player.transform.position;
         attackCount = 0;
         deathCount = 0;
         playerAttackCount = 0;
@@ -69,7 +69,7 @@ public class NpcGuard : MonoBehaviour
 		        
 		       	//look at the player and move towards him
 				transform.LookAt(player3d);
-		        NpcNavmesh.SetDestination(player.transform.position);	
+		        NpcNavmesh.destination = player.transform.position;	
 		        NpcAnim.SetBool("doButtonPress", false);
 
 		    } else {
@@ -92,7 +92,7 @@ public class NpcGuard : MonoBehaviour
 	            reachedPlayer= true;
 		    	NpcAnim.SetFloat("vely",  0);
 				NpcAnim.SetFloat("velx",  0);
-	            NpcAnim.SetFloat("velz",  0);
+	            
 				
 				//start attacking and get the slider
 				NpcAnim.SetBool("doButtonPress", true);
@@ -116,7 +116,12 @@ public class NpcGuard : MonoBehaviour
 				}
 		    }
 	    } else {	
-	    	if (distanceFromGuard > 2f) {
+	    	float guardDistance = 2f;
+	    	if (guardObject.name == "gem2") {
+	    		guardDistance = 15f;
+	    	}
+
+	    	if (distanceFromGuard > guardDistance) {
 		    	Vector2 agentLocation = new Vector2(agent3d.x, agent3d.z);
 		        Vector2 guardLocation = new Vector2(guardObject.transform.position.x, guardObject.transform.position.z);
 		        Vector2 velocityUnit = (-guardLocation + agentLocation).normalized;
@@ -127,7 +132,11 @@ public class NpcGuard : MonoBehaviour
 		        // NpcNavmesh.destination = player3d;
 				transform.LookAt(guardObject.transform.position);
 		        // // transform.position = player3d;
-		        NpcNavmesh.SetDestination(guardObject.transform.position);
+		        NpcNavmesh.destination = guardObject.transform.position;
+		    } else {
+		    	NpcAnim.SetFloat("vely",  0);
+				NpcAnim.SetFloat("velx",  0);
+	            
 		    }
 		    
 	    }
