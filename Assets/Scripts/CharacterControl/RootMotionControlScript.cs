@@ -164,6 +164,10 @@ public class RootMotionControlScript : MonoBehaviour
             anim.SetTrigger("isDead");
         }
 
+        if (Input.GetKeyDown(KeyCode.T)) {
+        	anim.SetTrigger("isThrowing");
+        }
+
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             
