@@ -164,8 +164,12 @@ public class RootMotionControlScript : MonoBehaviour
             anim.SetTrigger("isDead");
         }
 
-        if (Input.GetKeyDown(KeyCode.T)) {
-        	anim.SetTrigger("isThrowing");
+        if (Input.GetKeyDown(KeyCode.R)) {
+        	if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Throw")) {
+        		anim.SetTrigger("isThrowing");
+        		StartCoroutine(waitForThrow());	
+        	}
+        	
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) 
@@ -362,6 +366,32 @@ public class RootMotionControlScript : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator waitForThrow() {
+     	float waitTime = 0.60f;
+     	if (isInSpeedBoost)
+     		waitTime = 0.3f;
+
+
+        yield return new WaitForSeconds(waitTime);
+        GameObject projectile = GameObject.Find("PlayerProjectile");
+
+        Vector3 startPoint = GameObject.Find("mixamorig:Head").transform.position;
+
+    	GameObject projectileOne = Instantiate(projectile,startPoint, Quaternion.identity);
+		Rigidbody pOne = projectileOne.GetComponent<Rigidbody>();
+		
+		Vector3 forceDirection = GameObject.Find("mixamorig:Head").transform.forward;
+		pOne.AddForce(forceDirection.x * 25f, forceDirection.y - 5f, forceDirection.z * 25f, ForceMode.Impulse);
+		float time = 5f;
+		StartCoroutine(delayAttack(time, projectileOne));
+        
+    }
+    public IEnumerator delayAttack(float time, GameObject oldProjectile) {
+        yield return new WaitForSeconds(time);
+        oldProjectile.SetActive(false);
+    }
+
     //This is a physics callback
     void OnCollisionEnter(Collision collision)
     {
