@@ -379,19 +379,16 @@ public class RootMotionControlScript : MonoBehaviour
         Vector3 startPoint = GameObject.Find("mixamorig:Head").transform.position;
 
     	GameObject projectileOne = Instantiate(projectile,startPoint, Quaternion.identity);
+		projectileOne.SetActive(true);
 		Rigidbody pOne = projectileOne.GetComponent<Rigidbody>();
 		
 		Vector3 forceDirection = GameObject.Find("mixamorig:Head").transform.forward;
 		pOne.AddForce(forceDirection.x * 25f, forceDirection.y - 5f, forceDirection.z * 25f, ForceMode.Impulse);
-		float time = 5f;
-		StartCoroutine(delayAttack(time, projectileOne));
+		float time = 3f;
+		
         
     }
-    public IEnumerator delayAttack(float time, GameObject oldProjectile) {
-        yield return new WaitForSeconds(time);
-        oldProjectile.SetActive(false);
-    }
-
+   
     //This is a physics callback
     void OnCollisionEnter(Collision collision)
     {
