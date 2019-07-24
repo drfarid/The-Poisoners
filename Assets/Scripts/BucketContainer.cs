@@ -29,6 +29,7 @@ public class BucketContainer : MonoBehaviour
         bool speedPotion = false;
         bool strengthPotion = false;
         bool hallucinatePotion = false;
+        bool healthPotion = false;
     	bool hasFlower = false;
     	bool hasRock = false;
         bool hasGem = false;
@@ -36,6 +37,7 @@ public class BucketContainer : MonoBehaviour
         bool hasBerry = false;
         bool hasShroom = false;
         bool hasHoney = false;
+
 
         if (SceneManager.GetActiveScene().name == "tutorial")
         {
@@ -86,12 +88,17 @@ public class BucketContainer : MonoBehaviour
 	    		if (item.Name == "crystal") {
 	    			hasGem = true;
 	    		}
+	    		if (item.Name == "mushroom") {
+	    			hasShroom = true;
+	    		}
 	    	}
 	    	
 	    	if (hasFlower && hasRock && !hasGem) {
 	    		speedPotion = true;
 	    	} else if (hasFlower && hasRock && hasGem) {
 	    		hallucinatePotion = true;
+	    	} else if (hasRock && hasShroom) {
+	    		healthPotion = true;
 	    	}
 	    	
 
@@ -121,6 +128,20 @@ public class BucketContainer : MonoBehaviour
 				mixingCounter = 0;
 				items = new List<IInventoryItem>();
 				StartCoroutine(waitForSwirl("hallucination"));
+			
+			} else if (healthPotion) {
+				swirl = GameObject.Find("bucket-swirl-disk");	
+				swirlMesh = swirl.GetComponent<Renderer>();
+				swirlMesh.enabled = true;
+				swirl.transform.position = GameObject.Find("S_bucket").transform.position;
+					
+				foreach(IInventoryItem item in items) {
+					item.gObj.SetActive(false);	
+				}
+				mixingCounter = 0;
+				items = new List<IInventoryItem>();
+				StartCoroutine(waitForSwirl("health"));
+
 			}
 		}
         else if (SceneManager.GetActiveScene().name == "forest")
@@ -243,6 +264,9 @@ public class BucketContainer : MonoBehaviour
         } else if (potion == "mith") {
       		GameObject mithPotion = Instantiate(GameObject.Find("MithPotion"), new Vector3(0,0,0), Quaternion.identity);
 	    	playerInventory.AddItem(mithPotion.GetComponent<IInventoryItem>());  	
+        } else if (potion == "health") {
+        	GameObject healthPotion = Instantiate(GameObject.Find("HealthPotion"), new Vector3(0,0,0), Quaternion.identity);
+	    	playerInventory.AddItem(healthPotion.GetComponent<IInventoryItem>());  		
         }
 
 

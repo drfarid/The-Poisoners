@@ -238,6 +238,14 @@ public class RootMotionControlScript : MonoBehaviour
 				            winCanvas.interactable = true;
 				            winCanvas.alpha = 1f;
 				        }
+                    } else if (itemObject.Name == "HealthPotion") {
+                    	image.enabled = false;
+                        image.sprite = null;
+                        itemDragHandler.Item = null;
+                        anim.SetTrigger("isDrinking");
+                        Slider playerHealth = (Slider) GameObject.Find("Slider").GetComponent<Slider>();
+                        playerHealth.value += 0.3f;;
+                        break;
                     }
                 }
                 else
@@ -265,13 +273,13 @@ public class RootMotionControlScript : MonoBehaviour
                 SceneManager.LoadScene("hallucination2");
             }
 
-    } else if (potion == "speed") {
-            isInSpeedBoost = true;
-        } else if (potion == "strength") {
+	    } else if (potion == "speed") {
+	            isInSpeedBoost = true;
+	    } else if (potion == "strength") {
             isInStrengthBoost = true;
             //this.transform.localScale += new Vector3(5f, 5f, 5f);
             StartCoroutine(growWizard(true));
-        }
+	    }
 
     }
 
