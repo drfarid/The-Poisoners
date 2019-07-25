@@ -11,7 +11,7 @@ public class BossTwo : MonoBehaviour
 	bool justTeleported;
 	bool justAttacked;
 	int playerAttackCount;
-	int healthPoints = 2;
+	int healthPoints = 20;
     // Start is called before the first frame update
     void Start()
     {

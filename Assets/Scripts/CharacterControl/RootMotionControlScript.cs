@@ -366,6 +366,11 @@ public class RootMotionControlScript : MonoBehaviour
             }
         }
     }
+    public IEnumerator disappearProjectile(GameObject projectile) {
+    	yield return new WaitForSeconds(3);
+    	projectile.SetActive(false);
+
+    }
 
     public IEnumerator waitForThrow() {
      	float waitTime = 0.60f;
@@ -386,6 +391,7 @@ public class RootMotionControlScript : MonoBehaviour
 		Vector3 forceDirection = playerObject.transform.forward;
 		pOne.AddForce(forceDirection.x * 25f, forceDirection.y - 3f, forceDirection.z * 25f, ForceMode.Impulse);
 		float time = 3f;
+		StartCoroutine(disappearProjectile(projectileOne));
 		
         
     }
