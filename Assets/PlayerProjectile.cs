@@ -17,6 +17,7 @@ public class PlayerProjectile : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
+    	Debug.Log("collided with: " + other.gameObject.name);
     	if (other.gameObject.name.Contains("NPC-Flower")) {
     		other.gameObject.SetActive(false);
     		this.gameObject.SetActive(false);

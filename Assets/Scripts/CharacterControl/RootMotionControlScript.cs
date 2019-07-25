@@ -375,15 +375,16 @@ public class RootMotionControlScript : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
         GameObject projectile = GameObject.Find("PlayerProjectile");
+        GameObject playerObject = GameObject.Find("Wizard Red");
 
-        Vector3 startPoint = GameObject.Find("mixamorig:Head").transform.position;
+        Vector3 startPoint = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y + 3.2f, playerObject.transform.position.z);
 
     	GameObject projectileOne = Instantiate(projectile,startPoint, Quaternion.identity);
 		projectileOne.SetActive(true);
 		Rigidbody pOne = projectileOne.GetComponent<Rigidbody>();
 		
-		Vector3 forceDirection = GameObject.Find("mixamorig:Head").transform.forward;
-		pOne.AddForce(forceDirection.x * 25f, forceDirection.y - 5f, forceDirection.z * 25f, ForceMode.Impulse);
+		Vector3 forceDirection = playerObject.transform.forward;
+		pOne.AddForce(forceDirection.x * 25f, forceDirection.y - 3f, forceDirection.z * 25f, ForceMode.Impulse);
 		float time = 3f;
 		
         
