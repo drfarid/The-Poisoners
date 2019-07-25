@@ -88,4 +88,20 @@ public class BossTwo : MonoBehaviour
         justTeleported = false;
 
     }
+
+    void OnCollisionEnter(Collision other) {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.name.Contains("PlayerProjectile")) {
+            Debug.Log("got hit");
+            healthPoints--;
+            Slider bossHealth = (Slider)GameObject.Find("BossSlider").GetComponent<Slider>();
+            bossHealth.value = (float)healthPoints / 20.0f;
+            if (healthPoints == 0)
+            {
+                this.gameObject.SetActive(false);
+                GameObject rareOne = GameObject.Find("rareOne");
+                rareOne.transform.position = new Vector3(0, 2f, 0);
+            }
+        }
+    }
 }

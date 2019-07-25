@@ -18,7 +18,7 @@ public class GreenBoar : MonoBehaviour
     bool reachedPlayer;
     int attackCount;
     int deathCount = 0;
-    int healthPoints =10000;
+    float healthPoints;
     int playerAttackCount;
 
 	
@@ -31,7 +31,23 @@ public class GreenBoar : MonoBehaviour
         attackCount = 0;
         deathCount = 0;
         playerAttackCount = 0;
-        healthPoints = 2;
+        healthPoints = 20f;
+	}
+
+	void OnCollisionEnter(Collision other) {
+		Debug.Log(other.gameObject.name);
+		if (other.gameObject.name.Contains("PlayerProjectile")) {
+			Debug.Log("got hit");
+			healthPoints--;
+			Slider bossHealth = (Slider)GameObject.Find("BossSlider").GetComponent<Slider>();
+            bossHealth.value = (float)healthPoints / 20.0f;
+            if (healthPoints == 0)
+            {
+                this.gameObject.SetActive(false);
+                GameObject rareOne = GameObject.Find("rareOne");
+                rareOne.transform.position = new Vector3(0, 2f, 0);
+            }
+		}
 	}
 
 	void Update() {
