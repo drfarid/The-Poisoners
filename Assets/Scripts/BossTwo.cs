@@ -11,7 +11,7 @@ public class BossTwo : MonoBehaviour
 	bool justTeleported;
 	bool justAttacked;
 	int playerAttackCount;
-	int healthPoints = 20;
+	int healthPoints = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,7 +99,7 @@ public class BossTwo : MonoBehaviour
             if (healthPoints == 0)
             {
                 this.gameObject.SetActive(false);
-                GameObject rareOne = GameObject.Find("rareOne");
+                GameObject rareOne = GameObject.Find("rareTwo");
                 rareOne.transform.position = new Vector3(0, 2f, 0);
             }
         }
