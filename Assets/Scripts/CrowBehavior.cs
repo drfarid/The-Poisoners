@@ -11,12 +11,15 @@ public class CrowBehavior : MonoBehaviour
     bool finishedMessage;
     public Image closedMouth;
     public Image openMouth;
+    Button x;
 
 
     // Start is called before the first frame update
     void Start()
     {
         finishedMessage = false;
+        x = canvas.GetComponentInChildren<Button>();
+        x.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,11 +41,11 @@ public class CrowBehavior : MonoBehaviour
 
     public void speak(string message)
     {
-        Text messageText = canvas.GetComponent<Text>();
+        Text messageText = canvas.GetComponentInChildren<Text>();
         messageText.text = message;
         finishedMessage = false;
         //Image crowAvatar = GameObject.Find("Crow_Avatar").GetComponent<Image>();
-        Button x = canvas.GetComponentInChildren<Button>();
+        //Button x = canvas.GetComponentInChildren<Button>();
         x.gameObject.SetActive(true);
 
     }
@@ -52,7 +55,7 @@ public class CrowBehavior : MonoBehaviour
         finishedMessage = true;
         EventManager.TriggerEvent<CloseMessageEvent>();
         // hide X button
-        Button x = canvas.GetComponentInChildren<Button>();
+        //Button x = canvas.GetComponentInChildren<Button>();
         x.gameObject.SetActive(false);
     }
 
