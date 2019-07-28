@@ -91,15 +91,6 @@ public class RootMotionControlScript : MonoBehaviour
             playerInventory.AddItem(rareTwo.GetComponent<IInventoryItem>());
         }
 
-        if (SceneManager.GetActiveScene().name == "desert")
-        {
-            EventManager.TriggerEvent<SpeakEvent, string>("This is the desert.");
-        }
-
-        if (SceneManager.GetActiveScene().name == "forest")
-        {
-            EventManager.TriggerEvent<SpeakEvent, string>("Welcome to the forest.\nFirst look for mushrooms in the shade of the mountain.");
-        }
 
     }
 

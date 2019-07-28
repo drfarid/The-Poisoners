@@ -72,9 +72,34 @@ public class CharacterInputController : MonoBehaviour {
         potionTableGroup.interactable = false;
      	potionTableGroup.alpha = 0f;
         mixingCanvasGroup.alpha = 0f;
-        
 
-        
+
+        if (SceneManager.GetActiveScene().name == "desert")
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>("This is the desert.  Start by looking for a desert rose, but watch out for the guards!");
+        }
+
+        if (SceneManager.GetActiveScene().name == "forest")
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>("Welcome to the forest.\nFirst look for mushrooms in the shade of the mountain.");
+        }
+
+        if (SceneManager.GetActiveScene().name == "tutorial")
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>("Welcome to the tutorial.  I'll teach you how to play the game.");
+        }
+
+        if (SceneManager.GetActiveScene().name == "hallucination")
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>("Destroy the green boar! You'll be rewarded with a gem which will take you back to the real world.");
+        }
+
+        if (SceneManager.GetActiveScene().name == "hallucination2")
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>("Destroy the demon! He teleports so you'll need to be quick!");
+        }
+
+
 
         if (tutorialMode)
         {
@@ -86,7 +111,9 @@ public class CharacterInputController : MonoBehaviour {
 
 
     void Update () {
-		
+
+        string crowText = null;
+
         //GetAxisRaw() so we can do filtering here instead of the InputManager
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
         float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
@@ -149,12 +176,14 @@ public class CharacterInputController : MonoBehaviour {
             {
                 if (tutorialStage == 7)
                 {
+                    crowText = "Drag your items into the bucket one at a time. (click)";
                     tutorialText.text = "Drag your items into the bucket one at a time. (click)";
                     tutorialStage = 8;
                 }
                 else if (tutorialStage == 9)
                 {
                     //tutorialStage10
+                    crowText = "Now ingest the poison with P to build your immunity.  The game will start.";
                     tutorialText.text = "Now ingest the poison with P to build your immunity.  The game will start.";
                     tutorialStage = 10;
 
@@ -236,6 +265,7 @@ public class CharacterInputController : MonoBehaviour {
         {
             //tutorialStage = 5
             tutorialNPC.SetActive(false);
+            crowText = "Good job!  You got him! (click)";
             tutorialText.text = "Good job!  You got him! (click)";
             tutorialStage = 6;
 
@@ -247,26 +277,32 @@ public class CharacterInputController : MonoBehaviour {
             {
                 switch (tutorialStage) 
                 {
-                    case 1: 
+                    case 1:
+                        crowText = "Move to the mushroom and pick it up with the F key.";
                         tutorialText.text = "Move to the mushroom and pick it up with the F key.";
                         tutorialStage = 2;
                         break;
                     case 4:
+                        crowText = "Hit the Poisoner with Ctrl.  Don't let him steal! (click)";
                         tutorialText.text = "Hit the Poisoner with Ctrl.  Don't let him steal! (click)";
                         tutorialNPC.SetActive(true);
                         tutorialStage = 5;
                         break;
                     case 6:
+                        crowText = "Now you need to mix your poison.  Press M to mix.";
                         tutorialText.text = "Now you need to mix your poison.  Press M to mix.";
                         tutorialStage = 7;
                         break;
                     case 8:
+                        crowText = "Press Mix when your bucket is full.";
                         tutorialText.text = "Press Mix when your bucket is full.";
                         tutorialStage = 9;
                         break;
                 }
             }
         }
+        EventManager.TriggerEvent<SpeakEvent, string>(crowText);
+
     }
 
     public void PickupItem()
@@ -309,12 +345,52 @@ public class CharacterInputController : MonoBehaviour {
 
         }
 
+        if (SceneManager.GetActiveScene().name == "the_desert")
+        {
+            if (currentItem.Name == "flower")
+            {
+                if (!inventory.ContainsItem("flower"))
+                {
+                    crowText = "That's a pretty one.  You'll need one more rose.";
+                }
+                else
+                {
+                    if (!inventory.ContainsItem("rock"))
+                    {
+                        crowText = "Now you must find desert rocks.  You'll mix the pigment with the flowers.";
+                    }
 
-        if (tutorialMode)
+                }
+            }
+
+            if (currentItem.Name == "rock")
+            {
+                if (!inventory.ContainsItem("rock"))
+                {
+                    crowText = "Very good.  Try to find one more.";
+                }
+                else
+                {
+                    if (inventory.ContainsItem("flower"))
+                    {
+                        crowText = "Now you must dig below the surface to find a rare gem.\nLook for flat spot in the sand and press Space to dig.\nYou can evade the guards with a Speed potion.";
+                    }
+                    else
+                    {
+                        crowText = "very good. You'll need two rocks and two desert roses.";
+                    }
+
+                }
+            }
+
+        }
+
+        if (SceneManager.GetActiveScene().name == "tutorial")
         {
             //tutorialStage == 2
             if (currentItem.Name == "mushroom")
             {
+                crowText = "Great!  Now pick up that berry.";
                 tutorialText.text = "Great!  Now pick up that berry.";
                 tutorialStage = 3;
             }
@@ -322,6 +398,7 @@ public class CharacterInputController : MonoBehaviour {
             //tutorialStage == 3
             if (currentItem.Name == "berries")
             {
+                crowText = "Awesome!  But watch out!  Another Poisoner is here. (click)";
                 tutorialText.text = "Awesome!  But watch out!  Another Poisoner is here. (click)";
                 tutorialStage = 4;
             }
