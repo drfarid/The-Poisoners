@@ -1831,7 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65ad7af72b63874d8819af6d28bbe24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 0}
+  Inventory: {fileID: 719192009}
 --- !u!225 &483864332
 CanvasGroup:
   m_ObjectHideFlags: 0
