@@ -26,6 +26,18 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
+    public bool ContainsItem(String itemName) 
+    {
+        foreach(IInventoryItem item in mItems)
+        {
+            if (item.Name == itemName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 	public void RemoveItem(IInventoryItem item) {
 		if (mItems.Contains(item)) {
 			mItems.Remove(item);

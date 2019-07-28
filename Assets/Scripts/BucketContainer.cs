@@ -255,18 +255,25 @@ public class BucketContainer : MonoBehaviour
     	if (potion == "hallucination") {
 	    	GameObject newPotion = Instantiate(GameObject.Find("HallucinatePotion"), new Vector3(0,0,0), Quaternion.identity);
 	    	playerInventory.AddItem(newPotion.GetComponent<IInventoryItem>());
-	    } else if (potion == "speed") {
+            EventManager.TriggerEvent<SpeakEvent, string>("Now you must ingest the poison to enter the dream world.\nBut beware! An evil awaits inside!");
+        }
+        else if (potion == "speed") {
 	    	GameObject speedPotion = Instantiate(GameObject.Find("SpeedPotion"), new Vector3(0,0,0), Quaternion.identity);
 	    	playerInventory.AddItem(speedPotion.GetComponent<IInventoryItem>());
-        } else if (potion == "strength") {
+            EventManager.TriggerEvent<SpeakEvent, string>("The speed potion will help you avoid the evil wizards. But it doesn't last long!");
+        }
+        else if (potion == "strength") {
             GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
             playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
-        } else if (potion == "mith") {
+            EventManager.TriggerEvent<SpeakEvent, string>("You are now of great stature.  Seek out the tallest tree on the hilltop and strike it down!");
+        }
+        else if (potion == "mith") {
       		GameObject mithPotion = Instantiate(GameObject.Find("MithPotion"), new Vector3(0,0,0), Quaternion.identity);
 	    	playerInventory.AddItem(mithPotion.GetComponent<IInventoryItem>());  	
         } else if (potion == "health") {
         	GameObject healthPotion = Instantiate(GameObject.Find("HealthPotion"), new Vector3(0,0,0), Quaternion.identity);
-	    	playerInventory.AddItem(healthPotion.GetComponent<IInventoryItem>());  		
+	    	playerInventory.AddItem(healthPotion.GetComponent<IInventoryItem>());
+            EventManager.TriggerEvent<SpeakEvent, string>("Drink the health potion to heal your wounds!");
         }
 
 

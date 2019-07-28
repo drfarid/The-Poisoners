@@ -24,7 +24,7 @@ public class CharacterInputController : MonoBehaviour {
     public Camera bucketCam;
     public Camera mainCam;
     public Camera mapViewCam;
-    private float forwardSpeedLimit = 1f;
+    private float forwardSpeedLimit = 0.5f;
     public bool mapView = false;
     public GameObject playerMarker;
 
@@ -131,34 +131,19 @@ public class CharacterInputController : MonoBehaviour {
             SceneManager.LoadScene("win_scene");
         }
 
-        /*        if (Input.GetKeyUp(KeyCode.Alpha1))
-                    forwardSpeedLimit = 0.1f;
-                else if (Input.GetKeyUp(KeyCode.Alpha2))
-                    forwardSpeedLimit = 0.2f;
-                else if (Input.GetKeyUp(KeyCode.Alpha3))
-                    forwardSpeedLimit = 0.3f;
-                else if (Input.GetKeyUp(KeyCode.Alpha4))
-                    forwardSpeedLimit = 0.4f;
-                else if (Input.GetKeyUp(KeyCode.Alpha5))
-                    forwardSpeedLimit = 0.5f;
-                else if (Input.GetKeyUp(KeyCode.Alpha6))
-                    forwardSpeedLimit = 0.6f;
-                else if (Input.GetKeyUp(KeyCode.Alpha7))
-                    forwardSpeedLimit = 0.7f;
-                else if (Input.GetKeyUp(KeyCode.Alpha8))
-                    forwardSpeedLimit = 0.8f;
-                else if (Input.GetKeyUp(KeyCode.Alpha9))
-                    forwardSpeedLimit = 0.9f;
-                else if (Input.GetKeyUp(KeyCode.Alpha0))
-                    forwardSpeedLimit = 1.0f;
-        */
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            forwardSpeedLimit = Mathf.Lerp(forwardSpeedLimit, 0.5f, 0.5f);
+        }
 
-
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            forwardSpeedLimit = Mathf.Lerp(forwardSpeedLimit, 1.0f, 0.5f);
+        }
 
 
         delayCounter++;
         if (Input.GetKey(KeyCode.M)) {
-            print("got mix");
 
             if (tutorialMode)
             {
@@ -256,11 +241,6 @@ public class CharacterInputController : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-           // inventory.AddItem(currentItem);
-        }
-
         if (tutorialMode)
         {
             if (Input.GetMouseButtonDown(0))
@@ -291,7 +271,44 @@ public class CharacterInputController : MonoBehaviour {
 
     public void PickupItem()
     {
-        inventory.AddItem(currentItem);
+        string crowText = null;
+
+        if (SceneManager.GetActiveScene().name == "forest")
+        {
+            if (currentItem.Name == "mushroom")
+            {
+                if (!inventory.ContainsItem("mushroom"))
+                {
+                    crowText = "Good find!  You'll need one more mushroom";
+                }
+                else
+                {
+                    if (!inventory.ContainsItem("berries"))
+                    {
+                        crowText = "OK, now you need to find berries.  They grow out by the water to your left.";
+                    }
+
+                }
+            }
+
+            if (currentItem.Name == "berries")
+            {
+                if (!inventory.ContainsItem("berries"))
+                {
+                    crowText = "That's a ripe one!  You'll need one more.";
+                }
+                else
+                {
+                    if (inventory.ContainsItem("mushroom"))
+                    {
+                        crowText = "Next you'll need honey which grows in a great tree.\nMix a strength potion (Tab key for recipe).";
+                    }
+
+                }
+            }
+
+        }
+
 
         if (tutorialMode)
         {
@@ -309,9 +326,13 @@ public class CharacterInputController : MonoBehaviour {
                 tutorialStage = 4;
             }
 
-            print("pickup");
-            print(currentItem.Name);
         }
+
+        EventManager.TriggerEvent<SpeakEvent, string>(crowText);
+
+        inventory.AddItem(currentItem);
+
+
     }
 
     private void OnTriggerEnter(Collider hit) {
