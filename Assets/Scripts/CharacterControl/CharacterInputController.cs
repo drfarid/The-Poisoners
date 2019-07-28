@@ -75,7 +75,7 @@ public class CharacterInputController : MonoBehaviour {
 
         if (SceneManager.GetActiveScene().name == "the_desert")
         {
-            EventManager.TriggerEvent<SpeakEvent, string>("This is the desert.  You'll need to find desert rose and pigment rocks, but watch out for the guards!");
+            EventManager.TriggerEvent<SpeakEvent, string>("This is the desert.  You'll need to find desert rose and pigment rocks, Press R to throw fireballs!");
         }
 
         if (SceneManager.GetActiveScene().name == "forest")
@@ -361,7 +361,7 @@ public class CharacterInputController : MonoBehaviour {
                 {
                     if (inventory.ContainsItem("rock"))
                     {
-                        crowText = "Now you must dig below the surface to find a rare gem.\nLook for flat spot in the sand and press Space to dig.\nYou can evade the guards with a Speed potion.";
+                        crowText = "Look for a flat spot in the sand and press Space to dig.\nMake sure to drink the Speed potion.";
                     }
                     else
                     {
@@ -382,7 +382,7 @@ public class CharacterInputController : MonoBehaviour {
                 {
                     if (inventory.ContainsItem("flower"))
                     {
-                        crowText = "Now you must dig below the surface to find a rare gem.\nLook for flat spot in the sand and press Space to dig.\nYou can evade the guards with a Speed potion.";
+                        crowText = "Look for a flat spot in the sand and press Space to dig.\nDrink the Speed potion before you dig.";
                     }
                     else
                     {

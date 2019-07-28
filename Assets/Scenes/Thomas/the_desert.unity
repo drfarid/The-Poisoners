@@ -12170,22 +12170,22 @@ PrefabInstance:
     - target: {fileID: 6706373758022526559, guid: 9ec0d4eb397204a88bfc9a729cd3fd27,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -492
+      value: -454
       objectReference: {fileID: 0}
     - target: {fileID: 6706373758022526559, guid: 9ec0d4eb397204a88bfc9a729cd3fd27,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 311.95255
+      value: 132.9
       objectReference: {fileID: 0}
     - target: {fileID: 6706373758022526559, guid: 9ec0d4eb397204a88bfc9a729cd3fd27,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 229.7
       objectReference: {fileID: 0}
     - target: {fileID: 6706373758022526559, guid: 9ec0d4eb397204a88bfc9a729cd3fd27,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 265.8
       objectReference: {fileID: 0}
     - target: {fileID: 6706373758022526559, guid: 9ec0d4eb397204a88bfc9a729cd3fd27,
         type: 3}
@@ -32793,6 +32793,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crow
       objectReference: {fileID: 0}
+    - target: {fileID: 4394305495197470079, guid: 31f55423f9eb14c7e98dbf98c2f04da7,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 959065206}
+    - target: {fileID: 4394305495197470079, guid: 31f55423f9eb14c7e98dbf98c2f04da7,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 823484840}
     - target: {fileID: 4394305493663747152, guid: 31f55423f9eb14c7e98dbf98c2f04da7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32848,16 +32858,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4394305495197470079, guid: 31f55423f9eb14c7e98dbf98c2f04da7,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 959065206}
-    - target: {fileID: 4394305495197470079, guid: 31f55423f9eb14c7e98dbf98c2f04da7,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 823484840}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f55423f9eb14c7e98dbf98c2f04da7, type: 3}
 --- !u!1 &2115793908 stripped
