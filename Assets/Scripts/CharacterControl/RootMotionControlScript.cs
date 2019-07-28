@@ -91,7 +91,6 @@ public class RootMotionControlScript : MonoBehaviour
             playerInventory.AddItem(rareTwo.GetComponent<IInventoryItem>());
         }
 
-
     }
 
 

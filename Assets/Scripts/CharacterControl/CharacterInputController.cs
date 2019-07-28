@@ -73,10 +73,9 @@ public class CharacterInputController : MonoBehaviour {
      	potionTableGroup.alpha = 0f;
         mixingCanvasGroup.alpha = 0f;
 
-
-        if (SceneManager.GetActiveScene().name == "desert")
+        if (SceneManager.GetActiveScene().name == "the_desert")
         {
-            EventManager.TriggerEvent<SpeakEvent, string>("This is the desert.  Start by looking for a desert rose, but watch out for the guards!");
+            EventManager.TriggerEvent<SpeakEvent, string>("This is the desert.  You'll need to find desert rose and pigment rocks, but watch out for the guards!");
         }
 
         if (SceneManager.GetActiveScene().name == "forest")
@@ -98,6 +97,7 @@ public class CharacterInputController : MonoBehaviour {
         {
             EventManager.TriggerEvent<SpeakEvent, string>("Destroy the demon! He teleports so you'll need to be quick!");
         }
+
 
 
 
@@ -301,7 +301,11 @@ public class CharacterInputController : MonoBehaviour {
                 }
             }
         }
-        EventManager.TriggerEvent<SpeakEvent, string>(crowText);
+
+        if (crowText != null)
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>(crowText);
+        }
 
     }
 
@@ -355,10 +359,15 @@ public class CharacterInputController : MonoBehaviour {
                 }
                 else
                 {
-                    if (!inventory.ContainsItem("rock"))
+                    if (inventory.ContainsItem("rock"))
                     {
-                        crowText = "Now you must find desert rocks.  You'll mix the pigment with the flowers.";
+                        crowText = "Now you must dig below the surface to find a rare gem.\nLook for flat spot in the sand and press Space to dig.\nYou can evade the guards with a Speed potion.";
                     }
+                    else
+                    {
+                        crowText = "Very good. You'll need two rocks and two desert roses.";
+                    }
+
 
                 }
             }
@@ -377,7 +386,7 @@ public class CharacterInputController : MonoBehaviour {
                     }
                     else
                     {
-                        crowText = "very good. You'll need two rocks and two desert roses.";
+                        crowText = "Very good. You'll need two rocks and two desert roses.";
                     }
 
                 }
