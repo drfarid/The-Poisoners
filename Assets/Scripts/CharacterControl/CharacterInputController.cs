@@ -414,6 +414,20 @@ public class CharacterInputController : MonoBehaviour {
 
         }
 
+        if (SceneManager.GetActiveScene().name == "death_scene") {
+            if (currentItem.Name == "skull") {
+                Debug.Log("got skull");
+                Application.Quit();
+            } 
+            if (currentItem.Name == "flower") {
+                if (LastDeathInformation.StageName != null) {
+                    SceneManager.LoadScene(LastDeathInformation.StageName);
+                } else {
+                    SceneManager.LoadScene("forest");
+                }
+            }
+        }
+
         EventManager.TriggerEvent<SpeakEvent, string>(crowText);
 
         inventory.AddItem(currentItem);

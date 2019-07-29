@@ -111,7 +111,8 @@ public class NpcGuard : MonoBehaviour
 					
 					playerAnim.SetTrigger("isDead");
 					if (deathCount > 200) {
-						SceneManager.LoadScene("the_desert", LoadSceneMode.Single);
+						LastDeathInformation.StageName = "the_desert";
+						SceneManager.LoadScene("death_scene", LoadSceneMode.Single);
 					}
 				}
 		    }

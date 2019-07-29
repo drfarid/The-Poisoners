@@ -28,6 +28,7 @@ public class spiritProjectile : MonoBehaviour
         if (distanceToPlayer < 1f) {
         	
         	if (this.transform.position.y > 1.5f)
+                //change it back to 0.01f
 				playerHealth.value -= 0.01f;
 				
 			
@@ -38,7 +39,8 @@ public class spiritProjectile : MonoBehaviour
 			
 			playerAnim.SetTrigger("isDead");
 			if (deathCount > 200) {
-				SceneManager.LoadScene("hallucination2", LoadSceneMode.Single);
+                LastDeathInformation.StageName = "hallucination2";
+				SceneManager.LoadScene("death_scene", LoadSceneMode.Single);
 			}
 		}
     }

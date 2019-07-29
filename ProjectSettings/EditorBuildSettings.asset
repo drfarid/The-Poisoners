@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/mixing_system.unity
     guid: fe6d68c5d02f9424faa9b893ff332a8f
   - enabled: 1
-    path: Assets/Scenes/hallucination.unity
+    path: Assets/Scenes/Robert/hallucination.unity
     guid: 2ade050851ad74789b297c289bc71f24
   - enabled: 1
     path: Assets/Scenes/Thomas/hallucination2.unity
@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Robert/forest.unity
     guid: e04116ffdb6554fd982ff0508c833d86
+  - enabled: 1
+    path: Assets/Scenes/Thomas/death_scene.unity
+    guid: 59034d8df59254f45a517ff9e4d42005
   m_configObjects: {}

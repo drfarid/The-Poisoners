@@ -128,7 +128,8 @@ public class GreenBoar : MonoBehaviour
                 playerAnim.SetTrigger("isDead");
                 if (deathCount > 200)
                 {
-                    SceneManager.LoadScene("hallucination", LoadSceneMode.Single);
+                    LastDeathInformation.StageName = "hallucination";
+                    SceneManager.LoadScene("death_scene", LoadSceneMode.Single);
                 }
             }
         }
