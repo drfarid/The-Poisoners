@@ -265,7 +265,7 @@ public class BucketContainer : MonoBehaviour
         else if (potion == "strength") {
             GameObject strengthPotion = Instantiate(GameObject.Find("StrengthPotion"), new Vector3(0, 0, 0), Quaternion.identity);
             playerInventory.AddItem(strengthPotion.GetComponent<IInventoryItem>());
-            EventManager.TriggerEvent<SpeakEvent, string>("You are now of great stature.  Seek out the tallest tree on the hilltop and strike it down!");
+            EventManager.TriggerEvent<SpeakEvent, string>("The strength potion will grow you to great size.  Take it now.");
         }
         else if (potion == "mith") {
       		GameObject mithPotion = Instantiate(GameObject.Find("MithPotion"), new Vector3(0,0,0), Quaternion.identity);
@@ -284,8 +284,7 @@ public class BucketContainer : MonoBehaviour
         {
 
             print("Switching scene");
-            Text tutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
-            tutorialText.text = "Great, you've mixed your first poison!  Close the mixer with M.";
+            EventManager.TriggerEvent<SpeakEvent, string>("Great, you've mixed your first poison!  Close the mixer with M.");
 
         }
 

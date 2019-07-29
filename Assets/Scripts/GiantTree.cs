@@ -48,6 +48,8 @@ public class GiantTree : MonoBehaviour
                 print("knocking down tree");
                 anim.SetTrigger("fall");
                 //rMotion.growRoutine(false);
+                EventManager.TriggerEvent<SpeakEvent, string>("Amazing show of strength!  Retrieve the honeybee hive from the tree.");
+
             }
             else
             {

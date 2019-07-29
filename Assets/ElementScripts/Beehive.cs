@@ -27,6 +27,9 @@ public class Beehive : MonoBehaviour, IInventoryItem
 
 	public void OnPickup() {
 		gameObject.SetActive(false);
+
+        EventManager.TriggerEvent<SpeakEvent, string>("Now you must mix a poison with honey, mushroom, and berry to enter the dream world.");
+
         // GameObject wizard = GameObject.Find("Wizard_Red");
         // Animator anim = wizard.GetComponent<Animator>();
         // anim.SetBool("doButtonPress", true);

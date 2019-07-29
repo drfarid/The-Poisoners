@@ -8,10 +8,6 @@ public class Potions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Image blockHealth = GameObject.Find("Block_Health").GetComponent<Image>();
-        blockHealth.enabled = false;
-        Image blockVision = GameObject.Find("Block_Vision1").GetComponent<Image>();
-        blockVision.enabled = false;
     }
 
     // Update is called once per frame

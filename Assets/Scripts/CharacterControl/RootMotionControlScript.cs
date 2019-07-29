@@ -221,6 +221,7 @@ public class RootMotionControlScript : MonoBehaviour
                         itemDragHandler.Item = null;
                         anim.SetTrigger("isDrinking");
                         StartCoroutine(waitForDrink("speed"));
+                        EventManager.TriggerEvent<SpeakEvent, string>("You now have great speed.  Use it to evade the other wizards!");
                         break;
                     }
                     else if (itemObject.Name == "StrengthPotion")
@@ -231,6 +232,7 @@ public class RootMotionControlScript : MonoBehaviour
                         itemDragHandler.Item = null;
                         anim.SetTrigger("isDrinking");
                         StartCoroutine(waitForDrink("strength"));
+                        EventManager.TriggerEvent<SpeakEvent, string>("You are grown to a great size.  Seek out the largest tree on the hilltop and knock it down!");
                         break;
                     }
                     else if (itemObject.Name == "MithPotion")
