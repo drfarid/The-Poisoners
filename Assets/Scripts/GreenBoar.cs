@@ -68,8 +68,8 @@ public class GreenBoar : MonoBehaviour
 
 
             //set the velocity in x and y direction
-            NpcAnim.SetFloat("vely", Mathf.Sqrt(velocityUnit.y * velocityUnit.y));
-            NpcAnim.SetFloat("velx", velocityUnit.x);
+            //NpcAnim.SetFloat("vely", Mathf.Sqrt(velocityUnit.y * velocityUnit.y));
+            //NpcAnim.SetFloat("velx", velocityUnit.x);
 
             //look at the player and move towards him
             transform.LookAt(player3d);

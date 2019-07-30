@@ -94,7 +94,7 @@ public class CharacterInputController : MonoBehaviour {
 
         if (SceneManager.GetActiveScene().name == "hallucination2")
         {
-            EventManager.TriggerEvent<SpeakEvent, string>("Destroy the demon! He teleports so you'll need to be quick!");
+            EventManager.TriggerEvent<SpeakEvent, string>("Destroy the demon to get another gem! He teleports so you'll need to be quick!");
         }
 
 
