@@ -247,7 +247,9 @@ public class RootMotionControlScript : MonoBehaviour
 				            CanvasGroup winCanvas = GameObject.Find("Winning_Canvas").GetComponent<CanvasGroup>();
 				            winCanvas.interactable = true;
 				            winCanvas.alpha = 1f;
-				        }
+                      EventManager.TriggerEvent<SpeakEvent, string>("All Hail The Poison King!");
+
+                        }
                     } else if (itemObject.Name == "HealthPotion") {
                     	image.enabled = false;
                         image.sprite = null;

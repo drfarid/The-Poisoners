@@ -269,8 +269,10 @@ public class BucketContainer : MonoBehaviour
         }
         else if (potion == "mith") {
       		GameObject mithPotion = Instantiate(GameObject.Find("MithPotion"), new Vector3(0,0,0), Quaternion.identity);
-	    	playerInventory.AddItem(mithPotion.GetComponent<IInventoryItem>());  	
-        } else if (potion == "health") {
+	    	playerInventory.AddItem(mithPotion.GetComponent<IInventoryItem>());
+            EventManager.TriggerEvent<SpeakEvent, string>("Ingest the Ultimate Antidote to win the game!");
+        }
+        else if (potion == "health") {
         	GameObject healthPotion = Instantiate(GameObject.Find("HealthPotion"), new Vector3(0,0,0), Quaternion.identity);
 	    	playerInventory.AddItem(healthPotion.GetComponent<IInventoryItem>());
             EventManager.TriggerEvent<SpeakEvent, string>("Drink the health potion to heal your wounds!");
