@@ -97,6 +97,10 @@ public class CharacterInputController : MonoBehaviour {
             EventManager.TriggerEvent<SpeakEvent, string>("Destroy the demon to get another gem! He teleports so you'll need to be quick!");
         }
 
+        if (SceneManager.GetActiveScene().name == "win_scene")
+        {
+            EventManager.TriggerEvent<SpeakEvent, string>("You've made it to the pinnacle.  Mix the rare gems to create the ultimate antidote!");
+        }
 
 
 
