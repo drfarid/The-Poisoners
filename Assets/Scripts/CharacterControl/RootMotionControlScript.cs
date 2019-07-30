@@ -367,6 +367,9 @@ public class RootMotionControlScript : MonoBehaviour
             	}
             }
         }
+
+        EventManager.TriggerEvent<SpeakEvent, string>("That's it!  Keep digging until you hit bottom to find a rare crystal!");
+
     }
     public IEnumerator disappearProjectile(GameObject projectile) {
     	yield return new WaitForSeconds(3);

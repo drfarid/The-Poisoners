@@ -380,6 +380,18 @@ public class CharacterInputController : MonoBehaviour {
                 }
             }
 
+            if (currentItem.Name == "gem")
+            {
+                if (inventory.ContainsItem("rock") && inventory.ContainsItem("rock"))
+                {
+                    crowText = "A beautiful stone.  Mix it with a rose and pigment stone to create a poison for the dream world.";
+                }
+                else
+                {
+                    crowText = "A beautiful stone.  You'll also need a rose and pigment stone to formulate the poison.";
+                }
+            }
+
         }
 
         if (SceneManager.GetActiveScene().name == "tutorial")
