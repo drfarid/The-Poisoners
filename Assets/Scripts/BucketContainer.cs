@@ -285,6 +285,7 @@ public class BucketContainer : MonoBehaviour
 
             print("Switching scene");
             EventManager.TriggerEvent<SpeakEvent, string>("Great, you've mixed your first poison!  Close the mixer with M.");
+            cic.tutorialStage = 10;
 
         }
 

@@ -35,7 +35,7 @@ public class CharacterInputController : MonoBehaviour {
 
     private CanvasGroup potionTableGroup;
     private CanvasGroup mixingCanvasGroup;
-    private int tutorialStage =1;
+    public int tutorialStage =1;
 
 
     public float Forward
@@ -178,11 +178,11 @@ public class CharacterInputController : MonoBehaviour {
                     crowText = "Drag your items into the bucket one at a time. (click)";
                     tutorialStage = 8;
                 }
-                else if (tutorialStage == 9)
+                else if (tutorialStage == 10)
                 {
-                    //tutorialStage10
+                    //tutorialStage11
                     crowText = "Now ingest the poison with P to build your immunity.  The game will start.";
-                    tutorialStage = 10;
+                    tutorialStage = 11;
 
                 }
             }
@@ -237,11 +237,15 @@ public class CharacterInputController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
         	if (potionTableGroup.alpha == 0f) {
-        		potionTableGroup.alpha = 1f; 	
-        	} else {
+        		potionTableGroup.alpha = 1f;
+                crowText = "These are the potions you can make.  You will mix a Strength potion.  Hit Esc to dismiss recipes.";
+            }
+            else {
         		potionTableGroup.alpha = 0f;
-        	}
-        	
+                crowText = "Now hit M to mix your Strength potion.";
+                tutorialStage = 7;
+            }
+
         }
 
         //do some filtering of our input as well as clamp to a speed limit
@@ -283,12 +287,12 @@ public class CharacterInputController : MonoBehaviour {
                         tutorialStage = 5;
                         break;
                     case 6:
-                        crowText = "Now you need to mix your poison.  Press M to mix.";
+                        crowText = "Now you need to mix your poison.  Press Esc to view recipes.";
                         tutorialStage = 7;
                         break;
-                    case 8:
+                    case 9:
                         crowText = "Press Mix when your bucket is full.";
-                        tutorialStage = 9;
+                        tutorialStage = 10;
                         break;
                 }
             }
