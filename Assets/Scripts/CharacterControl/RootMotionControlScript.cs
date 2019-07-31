@@ -399,8 +399,15 @@ public class RootMotionControlScript : MonoBehaviour
 		pOne.AddForce(forceDirection.x * 25f, forceDirection.y - 3f, forceDirection.z * 25f, ForceMode.Impulse);
 		float time = 3f;
 		StartCoroutine(disappearProjectile(projectileOne));
-		
+
+     if (cinput.tutorialMode)
+     {
+            //tutorialStage=6
+            EventManager.TriggerEvent<SpeakEvent, string>("Excellent.  Aim carefully and you can destroy enemies with your fireballs. (click)");
+            cinput.tutorialStage = 7;
         
+     }
+
     }
    
     //This is a physics callback

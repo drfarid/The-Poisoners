@@ -292,6 +292,10 @@ public class CharacterInputController : MonoBehaviour {
                         tutorialStage = 5;
                         break;
                     case 6:
+                        crowText = "You can also throw fireballs to destroy enemies.  Press R to throw.";
+                        tutorialStage = 7;
+                        break;
+                    case 7:
                         crowText = "Now you need to mix your poison.  Press Esc to view recipes.";
                         tutorialStage = 7;
                         break;
