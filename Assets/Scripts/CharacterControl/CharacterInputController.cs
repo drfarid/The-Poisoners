@@ -238,12 +238,18 @@ public class CharacterInputController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
         	if (potionTableGroup.alpha == 0f) {
         		potionTableGroup.alpha = 1f;
-                crowText = "These are the potions you can make.  You will mix a Strength potion.  Hit Esc to dismiss recipes.";
+                if (tutorialMode)
+                {
+                    crowText = "These are the potions you can make.  You will mix a Strength potion.  Hit Esc to dismiss recipes.";
+                }
             }
             else {
         		potionTableGroup.alpha = 0f;
-                crowText = "Now hit M to mix your Strength potion.";
-                tutorialStage = 7;
+                if (tutorialMode)
+                {
+                    crowText = "Now hit M to mix your Strength potion.";
+                    tutorialStage = 7;
+                }
             }
 
         }
