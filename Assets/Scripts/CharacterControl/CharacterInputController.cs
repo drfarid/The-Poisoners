@@ -23,9 +23,8 @@ public class CharacterInputController : MonoBehaviour {
     public int delayCounter = 0;
     public Camera bucketCam;
     public Camera mainCam;
-    public Camera mapViewCam;
     private float forwardSpeedLimit = 0.5f;
-    public bool mapView = false;
+    //public bool mapView = false;
     public GameObject playerMarker;
 
 
@@ -215,24 +214,24 @@ public class CharacterInputController : MonoBehaviour {
 	        		
 	        	}
         	}
-	    } else if (Input.GetKey(KeyCode.Tab)) {
-            print("got map");
-            mapView = !mapView;
+	    } //else if (Input.GetKey(KeyCode.Tab)) {
+     //        print("got map");
+     //        mapView = !mapView;
 
-            if (mapView) {
-                // overhead map view
-                playerMarker.SetActive(true);
-                mainCam.enabled = false;
-                mapViewCam.enabled = true;
-                Time.timeScale = 0f;
-            } else {
-                mapViewCam.enabled = false;
-                mainCam.enabled = true;
-                playerMarker.SetActive(false);
-                Time.timeScale = 1f;
-            }
+     //        if (mapView) {
+     //            // overhead map view
+     //            playerMarker.SetActive(true);
+     //            mainCam.enabled = false;
+     //            mapViewCam.enabled = true;
+     //            Time.timeScale = 0f;
+     //        } else {
+     //            mapViewCam.enabled = false;
+     //            mainCam.enabled = true;
+     //            playerMarker.SetActive(false);
+     //            Time.timeScale = 1f;
+     //        }
 
-        }
+     //    }
 	    
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
