@@ -42,6 +42,7 @@ public class BossTwo : MonoBehaviour
     		if (playerAttackCount > 50) {
     			Debug.Log("Attacked boss");
     			healthPoints--;
+                EventManager.TriggerEvent<EnemyHitEvent, Vector3>(player.transform.position);
     			playerAttackCount = 0;	
     		}
     	}
@@ -64,6 +65,7 @@ public class BossTwo : MonoBehaviour
 		pOne.AddForce(forceDirection.x * 15f, forceDirection.y * 15f + 4f, forceDirection.z * 15f, ForceMode.Impulse);
 		float time = Random.Range(1f, 3f);
 		StartCoroutine(delayAttack(time, projectileOne));
+        EventManager.TriggerEvent<FireballEvent, Vector3>(this.transform.position);
 
     }
 
@@ -93,6 +95,7 @@ public class BossTwo : MonoBehaviour
         Debug.Log(other.gameObject.name);
         if (other.gameObject.name.Contains("PlayerProjectile")) {
             Debug.Log("got hit");
+            EventManager.TriggerEvent<EnemyHitEvent, Vector3>(player.transform.position);
             healthPoints--;
             Slider bossHealth = (Slider)GameObject.Find("BossSlider").GetComponent<Slider>();
             bossHealth.value = (float)healthPoints / 20.0f;

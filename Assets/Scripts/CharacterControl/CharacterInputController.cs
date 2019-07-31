@@ -336,7 +336,7 @@ public class CharacterInputController : MonoBehaviour {
                 {
                     if (inventory.ContainsItem("mushroom"))
                     {
-                        crowText = "Next you'll need honey which grows in a great tree.\nMix a strength potion (Tab key for recipe).";
+                        crowText = "Next you'll need honey which grows in a great tree.\nMix a strength potion (Esc key for recipe).";
                     }
 
                 }

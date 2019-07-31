@@ -72,10 +72,12 @@ public class NpcController : MonoBehaviour
 			if (attackCount > 20) {
 				playerHealth.value -= 0.04f;
 				attackCount = 0;
+                EventManager.TriggerEvent<PlayerHitEvent, Vector3>(player.transform.position);
 			}
 
 			if (playerHealth.value == 0 || playerHealth.value < 0) {
 				deathCount++;
+                EventManager.TriggerEvent<PlayerHitEvent, Vector3>(player.transform.position);
 				Animator playerAnim = player.GetComponent<Animator>();
 				playerAnim.SetTrigger("isDead");
 				if (deathCount > 200) {

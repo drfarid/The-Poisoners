@@ -80,6 +80,7 @@ public class NpcGuard : MonoBehaviour
 		    		playerAttackCount++;
 		    		if (playerAttackCount > 50) {
 		    			healthPoints--;
+		    			EventManager.TriggerEvent<EnemyHitEvent, Vector3>(player.transform.position);
 		    			playerAttackCount = 0;	
 		    		}
 		    	}
@@ -101,12 +102,14 @@ public class NpcGuard : MonoBehaviour
 				//attack the player every 20th frame
 				attackCount++;
 				if (attackCount > 20) {
+					EventManager.TriggerEvent<PlayerHitEvent, Vector3>(player.transform.position);
 					playerHealth.value -= 0.02f;
 					attackCount = 0;
 				}
 
 				//if health of player is zero then restart the game
 				if (playerHealth.value == 0 || playerHealth.value < 0) {
+					EventManager.TriggerEvent<PlayerHitEvent, Vector3>(player.transform.position);
 					deathCount++;
 					
 					playerAnim.SetTrigger("isDead");

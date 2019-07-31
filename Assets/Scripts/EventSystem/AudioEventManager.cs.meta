@@ -1,10 +1,19 @@
 fileFormatVersion: 2
 guid: d83dca873f7674fd0bcec61d2a1e04f8
-timeCreated: 1486394097
-licenseType: Pro
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audio: {instanceID: 0}
+  - defaultMusic: {instanceID: 0}
+  - openingMusic: {instanceID: 0}
+  - dangerMusic: {instanceID: 0}
+  - hallucinationMusic: {instanceID: 0}
+  - playerHitEffect: {fileID: 8300000, guid: 7244bd7ca6eb7471fa12d3747572c25f, type: 3}
+  - enemyHitEffect: {instanceID: 0}
+  - digEffect: {instanceID: 0}
+  - chopEffect: {instanceID: 0}
+  - fireballEffect: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

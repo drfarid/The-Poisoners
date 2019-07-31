@@ -9,6 +9,9 @@ public class CrowEventManager : MonoBehaviour
     public UnityAction<string> speakEventListener;
     public UnityAction closeMessageEventListener;
 
+    private AudioSource crowAudio;
+    public AudioClip crowSquak;
+
 
     void Awake()
     {
@@ -20,7 +23,8 @@ public class CrowEventManager : MonoBehaviour
 
     void Start()
     {
-        			
+        crowAudio = GetComponent<AudioSource>();
+        crowAudio.clip = this.crowSquak;	
     }
 
 
@@ -46,12 +50,12 @@ public class CrowEventManager : MonoBehaviour
         Debug.Log(message);
         CrowBehavior crow = GameObject.Find("Crow_GameObject").GetComponent<CrowBehavior>();
         crow.speak(message);
+        crowAudio.Play();
 
     }
 
     void closeMessageEventHandler()
     {
-        Debug.Log("CLOSE MESSAGE CLICKED");
         CrowBehavior crow = GameObject.Find("Crow_GameObject").GetComponent<CrowBehavior>();
         crow.speak("");
     }

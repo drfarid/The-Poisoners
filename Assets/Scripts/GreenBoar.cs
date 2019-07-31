@@ -41,6 +41,7 @@ public class GreenBoar : MonoBehaviour
 			healthPoints--;
 			Slider bossHealth = (Slider)GameObject.Find("BossSlider").GetComponent<Slider>();
             bossHealth.value = (float)healthPoints / 20.0f;
+            EventManager.TriggerEvent<EnemyHitEvent, Vector3>(player.transform.position);
             if (healthPoints == 0)
             {
                 this.gameObject.SetActive(false);
@@ -95,6 +96,7 @@ public class GreenBoar : MonoBehaviour
                     Debug.Log("Attacked boss");
                     healthPoints--;
                     playerAttackCount = 0;
+                    EventManager.TriggerEvent<EnemyHitEvent, Vector3>(player.transform.position);
                 }
             }
 
@@ -117,12 +119,14 @@ public class GreenBoar : MonoBehaviour
             {
                 playerHealth.value -= 0.02f;
                 attackCount = 0;
+                EventManager.TriggerEvent<PlayerHitEvent, Vector3>(player.transform.position);
             }
 
 
             //if health of player is zero then restart the game
             if (playerHealth.value == 0 || playerHealth.value < 0)
             {
+                EventManager.TriggerEvent<PlayerHitEvent, Vector3>(player.transform.position);
                 deathCount++;
 
                 playerAnim.SetTrigger("isDead");

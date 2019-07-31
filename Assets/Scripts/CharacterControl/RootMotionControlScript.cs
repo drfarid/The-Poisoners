@@ -145,7 +145,7 @@ public class RootMotionControlScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             // testing only
-            EventManager.TriggerEvent<SpeakEvent, string>("testing event system");
+            //EventManager.TriggerEvent<SpeakEvent, string>("testing event system");
         }
 
 
@@ -167,7 +167,8 @@ public class RootMotionControlScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) {
         	if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Throw")) {
         		anim.SetTrigger("isThrowing");
-        		StartCoroutine(waitForThrow());	
+        		StartCoroutine(waitForThrow());
+                EventManager.TriggerEvent<FireballEvent, Vector3>(this.transform.position);	
         	}
         	
         }
