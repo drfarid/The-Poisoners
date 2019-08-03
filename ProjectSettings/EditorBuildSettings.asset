@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/death_scene.unity
     guid: 59034d8df59254f45a517ff9e4d42005
+  - enabled: 1
+    path: Assets/Scenes/multiplayer.unity
+    guid: 046865e170d714621b63ee580769771c
   m_configObjects: {}

@@ -15,6 +15,11 @@ public class StartGame : MonoBehaviour
     	SceneManager.LoadScene("forest");
     }
 
+    public void MultiStart()
+    {
+        SceneManager.LoadScene("multiplayer");
+    }
+
     // Update is called once per frame
     void Update()
     {
